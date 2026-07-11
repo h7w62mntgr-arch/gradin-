@@ -1,0 +1,141 @@
+/* ===== Catálogo de maquinaria (fuente única de datos) =====
+   Cada producto se muestra en el catálogo (index) y en su página de
+   detalle (producto.html?id=<id>).
+
+   FOTOS: colocá las imágenes en assets/productos/ con estos nombres.
+   Mientras no existan, se muestra un placeholder automáticamente.        */
+
+const PRODUCTS = [
+  {
+    id: 'unipersonal',
+    name: 'Plataforma Unipersonal',
+    tag: 'Eléctrica',
+    icon: 'bi-box-arrow-up',
+    precio: '3.990',
+    entrega: '1.995',
+    cuotasMax: 12,
+    cuota: '166',
+    alquiler: '300',
+    desc: 'Plataforma de elevación vertical unipersonal, compacta y 100% eléctrica. Ideal para tareas de mantenimiento, montaje e instalación en altura dentro de espacios reducidos e interiores.',
+    cardSpecs: [
+      ['bi-arrows-expand', '10 m'],
+      ['bi-box-seam', '130 kg'],
+      ['bi-lightning-charge-fill', '220 V'],
+    ],
+    specs: [
+      ['bi-arrows-expand', 'Altura de elevación', '10 m'],
+      ['bi-arrows-fullscreen', 'Altura de trabajo', 'Hasta 12 m'],
+      ['bi-box-seam', 'Carga nominal', '130 kg'],
+      ['bi-rulers', 'Dimensión total', '1450 × 850 × 1980 mm'],
+      ['bi-speedometer', 'Peso total', '450 kg'],
+      ['bi-lightning-charge-fill', 'Alimentación', 'Eléctrica 220 V'],
+      ['bi-patch-check-fill', 'Garantía', '6 meses por escrito'],
+    ],
+    images: [
+      'assets/productos/unipersonal-1.jpg',
+      'assets/productos/unipersonal-2.jpg',
+      'assets/productos/unipersonal-3.jpg',
+    ],
+  },
+  {
+    id: 'bateria-9m',
+    name: 'Plataforma a Batería 11 m',
+    tag: 'Autopropulsada',
+    hot: true,
+    icon: 'bi-battery-charging',
+    precio: '7.990',
+    entrega: '3.995',
+    cuotasMax: 18,
+    cuota: '222',
+    alquiler: '520',
+    desc: 'Plataforma de tijera autopropulsada con desplazamiento a batería. Se mueve sin cables ni combustible, ideal para trabajos prolongados en interiores donde se necesita autonomía y bajo mantenimiento.',
+    cardSpecs: [
+      ['bi-arrows-expand', '11 m'],
+      ['bi-box-seam', '500 kg'],
+      ['bi-battery-charging', 'Batería'],
+    ],
+    specs: [
+      ['bi-arrows-expand', 'Altura de elevación', '9 m'],
+      ['bi-arrows-fullscreen', 'Altura de trabajo', 'Hasta 11 m'],
+      ['bi-box-seam', 'Carga nominal', '500 kg'],
+      ['bi-rulers', 'Dimensión total', '2016 × 1000 × 1535 mm'],
+      ['bi-speedometer', 'Peso total', '1150 kg'],
+      ['bi-battery-charging', 'Desplazamiento', 'A batería (autopropulsada)'],
+      ['bi-patch-check-fill', 'Garantía', '6 meses por escrito'],
+    ],
+    images: [
+      'assets/productos/bateria-9m-1.jpg',
+      'assets/productos/bateria-9m-2.jpg',
+    ],
+  },
+  {
+    id: 'manual-9m',
+    name: 'Plataforma Manual 11 m',
+    tag: 'Única unidad',
+    hot: true,
+    icon: 'bi-layers-fill',
+    precio: '5.990',
+    entrega: '2.996',
+    cuotasMax: 18,
+    cuota: '167',
+    alquiler: '450',
+    desc: 'Plataforma de tijera con elevación eléctrica y desplazamiento manual. Amplia jaula de trabajo y gran capacidad de carga, pensada para obra e industria a un costo accesible.',
+    cardSpecs: [
+      ['bi-arrows-expand', '11 m'],
+      ['bi-box-seam', '500 kg'],
+      ['bi-lightning-charge-fill', '220 V'],
+    ],
+    specs: [
+      ['bi-arrows-expand', 'Altura de elevación', '9 m'],
+      ['bi-arrows-fullscreen', 'Altura de trabajo', 'Hasta 11 m'],
+      ['bi-box-seam', 'Carga nominal', '500 kg'],
+      ['bi-speedometer', 'Peso total', '1050 kg'],
+      ['bi-bounding-box', 'Tamaño de la jaula', '2010 × 1130 mm'],
+      ['bi-rulers', 'Dimensión total', '2016 × 1290 × 1560 mm'],
+      ['bi-lightning-charge-fill', 'Funcionamiento', 'Eléctrico 220 V'],
+      ['bi-hand-index-thumb', 'Desplazamiento', 'Manual'],
+      ['bi-patch-check-fill', 'Garantía', '6 meses por escrito'],
+    ],
+    images: [
+      'assets/productos/manual-9m-1.jpg',
+      'assets/productos/manual-9m-2.jpg',
+    ],
+  },
+  {
+    id: 'boom-16m',
+    name: 'Plataforma Boom 16 m',
+    tag: 'Oferta',
+    hot: true,
+    icon: 'bi-bezier2',
+    precio: '14.990',
+    entrega: '7.500',
+    cuotasMax: 18,
+    cuota: '416',
+    alquiler: '600',
+    desc: 'Brazo articulado con rotación de 360°, disponible en versión a nafta o eléctrica. Alcanza 16 m de altura de trabajo y sortea obstáculos gracias a su brazo articulado, ideal para exteriores y grandes alturas.',
+    cardSpecs: [
+      ['bi-arrows-expand', '16 m'],
+      ['bi-box-seam', '200 kg'],
+      ['bi-fuel-pump-fill', 'Nafta/Elec.'],
+    ],
+    specs: [
+      ['bi-arrows-expand', 'Altura de elevación', '14 m'],
+      ['bi-arrows-fullscreen', 'Altura de trabajo', '16 m'],
+      ['bi-box-seam', 'Carga nominal', '200 kg'],
+      ['bi-speedometer', 'Peso total', '2300 kg'],
+      ['bi-arrow-repeat', 'Rotación', '360°'],
+      ['bi-bezier2', 'Brazo', 'Articulado (opción)'],
+      ['bi-fuel-pump-fill', 'Motorización', 'Nafta / Eléctrico'],
+      ['bi-bounding-box', 'Tamaño de la jaula', '1200 × 800 mm'],
+      ['bi-rulers', 'Dimensión total', '5200 × 1800 × 3050 mm'],
+      ['bi-patch-check-fill', 'Garantía', '6 meses por escrito'],
+    ],
+    images: [
+      'assets/productos/boom-16m-1.jpg',
+      'assets/productos/boom-16m-2.jpg',
+      'assets/productos/boom-16m-3.jpg',
+    ],
+  },
+];
+
+const WHATSAPP_NUMBER = '59897150208';
