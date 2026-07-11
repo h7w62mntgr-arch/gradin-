@@ -74,10 +74,10 @@ const PRODUCTS = [
     tag: 'Única unidad',
     hot: true,
     icon: 'bi-layers-fill',
-    precio: '5.990',
-    entrega: '2.996',
+    precio: '5.490',
+    entrega: '2.745',
     cuotasMax: 18,
-    cuota: '167',
+    cuota: '153',
     alquiler: '450',
     desc: 'Plataforma de tijera con elevación eléctrica y desplazamiento manual. Amplia jaula de trabajo y gran capacidad de carga, pensada para obra e industria a un costo accesible.',
     cardSpecs: [
