@@ -1,0 +1,6 @@
+# robots.txt — GRADIN · Diamant Maquinaria
+# IMPORTANTE: reemplazá TU-DOMINIO por el dominio real.
+User-agent: *
+Allow: /
+
+Sitemap: https://TU-DOMINIO/sitemap.xml

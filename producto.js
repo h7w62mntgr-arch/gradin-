@@ -15,7 +15,8 @@ if (!product) {
       <a class="btn btn--primary" href="index.html#productos">Ver toda la maquinaria</a>
     </div>`;
 } else {
-  document.title = `GRADIN · ${product.name}`;
+  /* ===== SEO por producto ===== */
+  seo(product);
 
   const waText = encodeURIComponent(
     `Hola GRADIN, me interesa la ${product.name}. ¿Me pasás precio y disponibilidad?`
@@ -105,6 +106,79 @@ if (!product) {
   thumbBtns().forEach(b =>
     b.addEventListener('click', () => show(Number(b.dataset.index)))
   );
+}
+
+/* ===== SEO por producto =====
+   Completa título, meta description, canonical, Open Graph y datos
+   estructurados (Product + BreadcrumbList) según el equipo abierto.  */
+function seo(p) {
+  const abs = (rel) => new URL(rel, location.href).href;
+  const url = `${location.origin}${location.pathname}?id=${p.id}`;
+  const img = abs(p.images[0]);
+  const priceNum = p.precio ? p.precio.replace(/\./g, '') : null;
+  const title = `${p.name} en Canelones, Uruguay | Venta y Alquiler — GRADIN`;
+  const desc = `${p.name}: ${p.desc} Precio, financiación propia y alquiler en Toledo, Canelones. Consultá por WhatsApp.`;
+
+  document.title = title;
+
+  const setMeta = (sel, attr, val) => {
+    let el = document.head.querySelector(sel);
+    if (!el) {
+      el = document.createElement('meta');
+      const [a, name] = sel.replace(/meta\[|\]/g, '').split('=');
+      el.setAttribute(a, name.replace(/['"]/g, ''));
+      document.head.appendChild(el);
+    }
+    el.setAttribute(attr, val);
+  };
+  setMeta('meta[name="description"]', 'content', desc);
+  setMeta('meta[property="og:title"]', 'content', title);
+  setMeta('meta[property="og:description"]', 'content', desc);
+  setMeta('meta[property="og:image"]', 'content', img);
+  setMeta('meta[property="og:url"]', 'content', url);
+
+  let canon = document.head.querySelector('link[rel="canonical"]');
+  if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
+  canon.href = url;
+
+  const product = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: p.name,
+    description: p.desc,
+    image: p.images.map(abs),
+    sku: p.id,
+    category: 'Maquinaria de elevación',
+    brand: { '@type': 'Brand', name: 'Diamant' },
+    additionalProperty: p.specs.map(s => ({ '@type': 'PropertyValue', name: s[1], value: s[2] })),
+  };
+  if (priceNum) {
+    product.offers = {
+      '@type': 'Offer',
+      priceCurrency: 'USD',
+      price: priceNum,
+      availability: 'https://schema.org/InStock',
+      url,
+      seller: { '@type': 'Store', name: 'GRADIN Maquinaria' },
+    };
+  }
+
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${location.origin}/index.html` },
+      { '@type': 'ListItem', position: 2, name: 'Maquinaria', item: `${location.origin}/index.html#productos` },
+      { '@type': 'ListItem', position: 3, name: p.name, item: url },
+    ],
+  };
+
+  [product, breadcrumb].forEach(obj => {
+    const s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.textContent = JSON.stringify(obj);
+    document.head.appendChild(s);
+  });
 }
 
 /* ===== Menú móvil ===== */

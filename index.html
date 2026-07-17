@@ -1,27 +1,123 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-UY">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GRADIN — Tienda de maquinaria en Uruguay. Venta y alquiler de plataformas elevadoras, tijeras, brazos articulados y montacargas. Canelones / Toledo." />
-  <title>GRADIN · Maquinaria · Venta y Alquiler</title>
-  <link rel="icon" href="assets/logo-diamanto.png" />
 
-  <!-- Open Graph (preview al compartir por WhatsApp / redes) -->
-  <!-- IMPORTANTE: reemplazá TU-DOMINIO por el dominio real; og:url y og:image deben ser URLs absolutas para que WhatsApp muestre la preview -->
+  <!-- ===== SEO base ===== -->
+  <!-- IMPORTANTE: reemplazá TU-DOMINIO por el dominio real en TODO el archivo (canonical, Open Graph y JSON-LD). También en robots.txt y sitemap.xml. -->
+  <title>Maquinaria en Canelones, Uruguay | Plataformas Elevadoras · Venta y Alquiler — GRADIN</title>
+  <meta name="description" content="Venta y alquiler de maquinaria en Canelones, Uruguay: plataformas elevadoras, tijeras, brazos articulados y montacargas. Financiación propia hasta 18 cuotas. Toledo, Canelones. ☎ +598 97 150 208." />
+  <meta name="keywords" content="maquinaria Canelones, maquinaria Uruguay, plataformas elevadoras Uruguay, alquiler de maquinaria Canelones, venta de maquinaria Uruguay, plataforma de tijera, brazo articulado, montacargas, plataforma unipersonal, elevadores Toledo Canelones, GRADIN, Diamant Maquinaria" />
+  <meta name="author" content="GRADIN · Diamant Maquinaria" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="theme-color" content="#0b2a5b" />
+  <link rel="canonical" href="https://TU-DOMINIO/" />
+  <link rel="icon" href="assets/logo-diamanto.png" />
+  <link rel="apple-touch-icon" href="assets/logo-diamanto.png" />
+
+  <!-- ===== Geolocalización (SEO local) ===== -->
+  <meta name="geo.region" content="UY-CA" />
+  <meta name="geo.placename" content="Toledo, Canelones, Uruguay" />
+  <meta name="geo.position" content="-34.7403871;-56.1128398" />
+  <meta name="ICBM" content="-34.7403871, -56.1128398" />
+
+  <!-- ===== Open Graph (WhatsApp / Facebook) ===== -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Diamant · GRADIN Maquinaria" />
-  <meta property="og:title" content="GRADIN · Maquinaria · Venta y Alquiler en Uruguay" />
-  <meta property="og:description" content="Venta y alquiler de plataformas elevadoras, tijeras, brazos articulados y montacargas. Financiación propia. Toledo, Canelones." />
+  <meta property="og:site_name" content="GRADIN · Diamant Maquinaria" />
+  <meta property="og:title" content="Maquinaria en Canelones, Uruguay | Venta y Alquiler — GRADIN" />
+  <meta property="og:description" content="Plataformas elevadoras, tijeras, brazos articulados y montacargas. Financiación propia hasta 18 cuotas. Toledo, Canelones." />
   <meta property="og:locale" content="es_UY" />
   <meta property="og:url" content="https://TU-DOMINIO/" />
   <meta property="og:image" content="https://TU-DOMINIO/assets/backgroundhero.jpeg" />
+  <meta property="og:image:alt" content="Maquinaria GRADIN — plataformas elevadoras" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Maquinaria en Canelones, Uruguay | Venta y Alquiler — GRADIN" />
+  <meta name="twitter:description" content="Plataformas elevadoras, tijeras, brazos articulados y montacargas. Financiación propia. Toledo, Canelones." />
+  <meta name="twitter:image" content="https://TU-DOMINIO/assets/backgroundhero.jpeg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- ===== Datos estructurados: negocio local (Schema.org) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "@id": "https://TU-DOMINIO/#business",
+    "name": "GRADIN Maquinaria",
+    "alternateName": "Diamant Maquinaria",
+    "description": "Tienda de maquinaria en Canelones, Uruguay. Venta y alquiler de plataformas elevadoras, tijeras, brazos articulados y montacargas, con financiación propia.",
+    "url": "https://TU-DOMINIO/",
+    "logo": "https://TU-DOMINIO/assets/logo-diamanto.png",
+    "image": "https://TU-DOMINIO/assets/backgroundhero.jpeg",
+    "telephone": "+59897150208",
+    "priceRange": "$$",
+    "currenciesAccepted": "USD",
+    "paymentAccepted": "Efectivo, Transferencia, Financiación propia",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ruta 33 km 22.400",
+      "addressLocality": "Toledo",
+      "addressRegion": "Canelones",
+      "postalCode": "15700",
+      "addressCountry": "UY"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -34.7403871,
+      "longitude": -56.1128398
+    },
+    "hasMap": "https://www.google.com/maps/place/Gradin+Uruguay/@-34.7405407,-56.112986,20z",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "13:00"
+      }
+    ],
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "Canelones" },
+      { "@type": "AdministrativeArea", "name": "Montevideo" },
+      { "@type": "Country", "name": "Uruguay" }
+    ],
+    "sameAs": [
+      "https://wa.me/59897150208"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Maquinaria",
+      "itemListElement": [
+        { "@type": "Offer", "priceCurrency": "USD", "price": "3990", "itemOffered": { "@type": "Product", "name": "Plataforma Unipersonal", "url": "https://TU-DOMINIO/producto.html?id=unipersonal" } },
+        { "@type": "Offer", "priceCurrency": "USD", "price": "7990", "itemOffered": { "@type": "Product", "name": "Plataforma a Batería 11 m", "url": "https://TU-DOMINIO/producto.html?id=bateria-9m" } },
+        { "@type": "Offer", "priceCurrency": "USD", "price": "5490", "itemOffered": { "@type": "Product", "name": "Plataforma Manual 11 m", "url": "https://TU-DOMINIO/producto.html?id=manual-9m" } },
+        { "@type": "Offer", "priceCurrency": "USD", "price": "14990", "itemOffered": { "@type": "Product", "name": "Plataforma Boom 16 m", "url": "https://TU-DOMINIO/producto.html?id=boom-16m" } }
+      ]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://TU-DOMINIO/#website",
+    "url": "https://TU-DOMINIO/",
+    "name": "GRADIN · Diamant Maquinaria",
+    "inLanguage": "es-UY",
+    "publisher": { "@id": "https://TU-DOMINIO/#business" }
+  }
+  </script>
 </head>
 <body>
 
