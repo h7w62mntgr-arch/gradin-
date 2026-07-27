@@ -143,6 +143,8 @@ img { max-width: 100%; display: block; }
   display: block;
   object-fit: contain;
 }
+.brandstrip__logo[data-brand="titan"] img,
+.brandstrip__logo[data-brand="hsylift"] img { height: 96px; }
 .brandstrip__logo:hover { transform: translateY(-2px); }
 .brandstrip__logo.is-pending { opacity: .8; }
 .brandstrip__logo.is-pending img { filter: grayscale(.35); }
@@ -860,6 +862,8 @@ img { max-width: 100%; display: block; }
   .logo img { height: 72px; }
   .brandstrip { gap: 18px; }
   .brandstrip__logo img { height: 40px; }
+  .brandstrip__logo[data-brand="titan"] img,
+  .brandstrip__logo[data-brand="hsylift"] img { height: 72px; }
 }
 
 @media (max-width: 760px) {
@@ -868,6 +872,8 @@ img { max-width: 100%; display: block; }
   .header__brand { gap: 14px; }
   .brandstrip { gap: 12px; }
   .brandstrip__logo img { height: 30px; }
+  .brandstrip__logo[data-brand="titan"] img,
+  .brandstrip__logo[data-brand="hsylift"] img { height: 54px; }
   .brandstrip__soon { display: none; }
   .nav {
     position: absolute;
@@ -903,6 +909,8 @@ img { max-width: 100%; display: block; }
   .header__brand { gap: 10px; }
   .brandstrip { gap: 8px; }
   .brandstrip__logo img { height: 26px; }
+  .brandstrip__logo[data-brand="titan"] img,
+  .brandstrip__logo[data-brand="hsylift"] img { height: 46px; }
   .brandbar { gap: 8px; }
   .brandbar__chip { padding: 7px 14px; font-size: .84rem; }
   .grid--products { grid-template-columns: 1fr; }
@@ -912,6 +920,8 @@ img { max-width: 100%; display: block; }
 @media (max-width: 360px) {
   .logo img { height: 40px; }
   .brandstrip__logo img { height: 22px; }
+  .brandstrip__logo[data-brand="titan"] img,
+  .brandstrip__logo[data-brand="hsylift"] img { height: 38px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

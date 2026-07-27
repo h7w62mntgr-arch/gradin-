@@ -296,8 +296,6 @@ const PRODUCTS = [
     ],
     images: [
       'assets/articulada-hsylift.jpeg',
-      'assets/articulada-16m.jpeg',
-      'assets/plataforma-articulada-remolcable.jpeg',
       'assets/ficha-tecncicaarticulada.jpeg',
     ],
   },
@@ -307,8 +305,8 @@ const PRODUCTS = [
    pending: true → marca sin material aún, se muestra como “Próximamente”.   */
 const BRANDS = [
   { id: 'gradin',  name: 'GRADIN',   logo: 'assets/gradin.png' },
-  { id: 'hsylift', name: 'HSY LIFT', logo: 'assets/logo-hsylift.jpeg' },
   { id: 'titan',   name: 'TITAN',    logo: 'assets/logo-titan.jpeg', pending: true },
+  { id: 'hsylift', name: 'HSY LIFT', logo: 'assets/logo-hsylift.jpeg' },
 ];
 
 const WHATSAPP_NUMBER = '59897150208';
