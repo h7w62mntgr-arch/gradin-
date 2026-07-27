@@ -31,7 +31,7 @@
         <a href="#inicio" class="logo">
           <img src="./assets/logo-diamanto.png" alt="DIAMANTO Maquinaria">
         </a>
-        <img src="./assets/gradin.png" alt="GRADIN" class="logo-gradin">
+        <div class="brandstrip" id="brandStrip"><!-- JS render (marcas) --></div>
       </div>
 
       <nav class="nav" id="nav">
@@ -124,9 +124,12 @@
           <button class="toggle__btn is-active" data-mode="venta">Venta</button>
           <button class="toggle__btn" data-mode="alquiler">Alquiler</button>
         </div>
+
+        <div class="brandbar" id="brandBar"><!-- JS render (filtro por marca) --></div>
       </div>
 
       <div class="grid grid--products" id="productGrid"><!-- JS render --></div>
+      <div class="brand-empty" id="brandEmpty" hidden><!-- JS render (marca sin equipos) --></div>
     </div>
   </section>
 
@@ -187,10 +190,20 @@
         <div class="field">
           <label for="equipo">Equipo de interés</label>
           <select id="equipo" name="equipo">
-            <option>Plataforma Unipersonal</option>
-            <option>Plataforma a Batería 11 m</option>
-            <option>Plataforma Manual 11 m</option>
-            <option>Plataforma Boom 16 m</option>
+            <optgroup label="GRADIN">
+              <option>Plataforma Unipersonal</option>
+              <option>Plataforma a Batería 11 m</option>
+              <option>Plataforma Manual 11 m</option>
+              <option>Plataforma Boom 16 m</option>
+              <option>Montacargas 2.5 T (alquiler)</option>
+              <option>Andamio Eléctrico (próximamente)</option>
+              <option>Plataforma Eléctrica Autopropulsada 10 m (próximamente)</option>
+              <option>Plataforma Eléctrica Fácil Carga 12 m (próximamente)</option>
+            </optgroup>
+            <optgroup label="HSY LIFT">
+              <option>Plataforma Compacta 5.7 m</option>
+              <option>Plataforma Articulada Remolcable 14 m</option>
+            </optgroup>
             <option>Otro / No estoy seguro</option>
           </select>
         </div>

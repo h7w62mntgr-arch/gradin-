@@ -18,9 +18,12 @@ if (!product) {
   document.title = `GRADIN · ${product.name}`;
 
   const waText = encodeURIComponent(
-    `Hola GRADIN, me interesa la ${product.name}. ¿Me pasás precio y disponibilidad?`
+    product.soon
+      ? `Hola GRADIN, quiero reservar la ${product.name} (próximo ingreso). ¿Cómo hago la reserva?`
+      : `Hola GRADIN, me interesa la ${product.name}. ¿Me pasás precio y disponibilidad?`
   );
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
+  const ctaLabel = product.soon ? 'Reservar por WhatsApp' : 'Consultar por WhatsApp';
 
   const thumbs = product.images.map((src, i) => `
     <button class="gallery__thumb ${i === 0 ? 'is-active' : ''}" data-index="${i}" aria-label="Foto ${i + 1}">
@@ -34,26 +37,54 @@ if (!product) {
       <span class="spec__value">${s[2]}</span>
     </li>`).join('');
 
-  const priceBlock = product.precio ? `
+  const rentBlock = product.alquilerDia ? `
     <div class="detail__price">
       <div class="detail__price-row">
-        <span class="detail__price-big">USD ${product.precio}</span>
-        <small>+ IVA · precio contado</small>
+        <span class="detail__price-big">USD ${product.alquilerDia}</span>
+        <small>+ IVA · por día</small>
       </div>
+      <div class="detail__finance">
+        <p class="detail__finance-title"><i class="bi bi-calendar-week"></i> Alquiler</p>
+        <ul>
+          <li>Por semana: <strong>USD ${product.alquilerSemana}</strong> + IVA</li>
+          <li>Cotizamos tu traslado</li>
+        </ul>
+      </div>
+    </div>` : '';
+
+  let priceBlock = '';
+  if (product.precio) {
+    const financeBlock = product.soon ? `
+      <div class="detail__finance">
+        <p class="detail__finance-title"><i class="bi bi-hourglass-split"></i> Próximamente · ya podés reservar</p>
+        <ul>
+          <li>Reservá tu unidad con seña y coordinás el resto al ingreso del equipo.</li>
+        </ul>
+      </div>` : (product.cuota ? `
       <div class="detail__finance">
         <p class="detail__finance-title"><i class="bi bi-credit-card-2-front-fill"></i> Financiación de la casa</p>
         <ul>
           <li>Entregás el <strong>50%</strong>: USD ${product.entrega} + IVA</li>
           <li>El resto en <strong>hasta ${product.cuotasMax} cuotas</strong> de <strong>USD ${product.cuota}</strong> + IVA</li>
         </ul>
+      </div>` : '');
+    priceBlock = `
+    <div class="detail__price">
+      <div class="detail__price-row">
+        <span class="detail__price-big">USD ${product.precio}</span>
+        <small>+ IVA · ${product.soon ? 'precio de reserva' : 'precio contado'}</small>
       </div>
-    </div>` : `
+      ${financeBlock}
+    </div>`;
+  } else if (!product.alquilerDia) {
+    priceBlock = `
     <div class="detail__price">
       <div class="detail__price-row">
         <span class="detail__price-big">Consultá el precio</span>
       </div>
       <div class="detail__price-alt">Escribinos por WhatsApp y te pasamos precio y opciones de financiación.</div>
     </div>`;
+  }
 
   detail.innerHTML = `
     <div class="detail__gallery">
@@ -72,12 +103,13 @@ if (!product) {
       <p class="detail__desc">${product.desc}</p>
 
       ${priceBlock}
+      ${rentBlock}
 
       <ul class="spec-list">${specRows}</ul>
 
       <div class="detail__actions">
         <a class="btn btn--accent btn--block" href="${waLink}" target="_blank" rel="noopener">
-          <i class="bi bi-whatsapp"></i> Consultar por WhatsApp
+          <i class="bi bi-whatsapp"></i> ${ctaLabel}
         </a>
         <a class="btn btn--ghost-dark btn--block" href="index.html#productos">Ver otros equipos</a>
       </div>

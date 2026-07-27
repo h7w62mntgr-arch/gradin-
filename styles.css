@@ -127,13 +127,80 @@ img { max-width: 100%; display: block; }
 .logo--footer { color: #fff; font-size: 1.7rem; }
 .logo--footer img { height: 100px; width: auto; }
 
-.header__brand { display: flex; align-items: center; gap: 60px; }
-.logo-gradin {
+.header__brand { display: flex; align-items: center; gap: 40px; }
+
+/* Marcas junto a GRADIN (clic → filtra sus equipos) */
+.brandstrip { display: flex; align-items: center; gap: 26px; }
+.brandstrip__logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: transform .2s, opacity .2s;
+}
+.brandstrip__logo img {
   height: 54px;
   width: auto;
   display: block;
   object-fit: contain;
 }
+.brandstrip__logo:hover { transform: translateY(-2px); }
+.brandstrip__logo.is-pending { opacity: .8; }
+.brandstrip__logo.is-pending img { filter: grayscale(.35); }
+.brandstrip__soon {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: var(--accent);
+  color: #1a1200;
+  font-size: .56rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+/* Barra de filtro por marca */
+.brandbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+.brandbar__chip {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: .9rem;
+  cursor: pointer;
+  transition: color .2s, background .2s, border-color .2s;
+}
+.brandbar__chip:hover { color: var(--blue-700); border-color: var(--blue-500); }
+.brandbar__chip.is-active {
+  background: var(--blue-700);
+  color: #fff;
+  border-color: var(--blue-700);
+}
+
+/* Estado “marca sin equipos / próximamente” */
+.brand-empty {
+  text-align: center;
+  max-width: 520px;
+  margin: 20px auto 0;
+  padding: 44px 28px;
+  background: var(--bg-soft);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+.brand-empty i { font-size: 2.4rem; color: var(--blue-600); }
+.brand-empty h3 { font-size: 1.3rem; font-weight: 900; margin: 12px 0 6px; }
+.brand-empty p { color: var(--muted); margin-bottom: 20px; }
 
 .nav { display: flex; align-items: center; gap: 6px; }
 .nav__link {
@@ -280,6 +347,23 @@ img { max-width: 100%; display: block; }
   letter-spacing: .5px;
 }
 .pcard__tag--hot { background: var(--accent); color: #1a1200; }
+
+/* Card “Próximamente / reservar” */
+.pcard--soon { border-color: var(--accent); }
+.pcard__soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245,166,35,.16);
+  color: #8a5a00;
+  font-size: .74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
 .pcard__img {
   font-size: 3.4rem;
   height: 120px;
@@ -482,6 +566,7 @@ img { max-width: 100%; display: block; }
   gap: 48px;
   align-items: start;
 }
+.contact__info, .contact__form { min-width: 0; }
 .contact__info p { color: var(--muted); margin: 14px 0 24px; }
 .contact__list { list-style: none; display: grid; gap: 16px; }
 .contact__list li { display: flex; align-items: center; gap: 12px; font-weight: 500; }
@@ -496,7 +581,7 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--line);
   line-height: 0;
 }
-.contact__map iframe { display: block; width: 100%; }
+.contact__map iframe { display: block; width: 100%; max-width: 100%; }
 .contact__map-link {
   display: inline-flex;
   align-items: center;
@@ -518,10 +603,14 @@ img { max-width: 100%; display: block; }
   display: grid;
   gap: 16px;
 }
-.field { display: grid; gap: 6px; }
+.field { display: grid; gap: 6px; min-width: 0; }
 .field label { font-size: .85rem; font-weight: 600; color: var(--ink); }
 .field input, .field select, .field textarea {
   font: inherit;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 12px 14px;
   border: 1.5px solid var(--line);
   border-radius: 10px;
@@ -767,13 +856,19 @@ img { max-width: 100%; display: block; }
   .detail { grid-template-columns: 1fr; gap: 30px; }
   .trust__inner { grid-template-columns: repeat(2, 1fr); }
   .footer__inner { grid-template-columns: 1fr; }
+  .header__brand { gap: 22px; }
+  .logo img { height: 72px; }
+  .brandstrip { gap: 18px; }
+  .brandstrip__logo img { height: 40px; }
 }
 
 @media (max-width: 760px) {
   html { scroll-padding-top: 84px; }
   .logo img { height: 56px; }
-  .logo-gradin { display: block; height: 30px; }
-  .header__brand { gap: 12px; }
+  .header__brand { gap: 14px; }
+  .brandstrip { gap: 12px; }
+  .brandstrip__logo img { height: 30px; }
+  .brandstrip__soon { display: none; }
   .nav {
     position: absolute;
     top: 100%;
@@ -804,6 +899,19 @@ img { max-width: 100%; display: block; }
   .finance__cards { grid-template-columns: 1fr; }
   .hero__stats { gap: 24px; }
   .section { padding-block: 60px; }
+  .logo img { height: 46px; }
+  .header__brand { gap: 10px; }
+  .brandstrip { gap: 8px; }
+  .brandstrip__logo img { height: 26px; }
+  .brandbar { gap: 8px; }
+  .brandbar__chip { padding: 7px 14px; font-size: .84rem; }
+  .grid--products { grid-template-columns: 1fr; }
+  .brand-empty { padding: 34px 20px; }
+}
+
+@media (max-width: 360px) {
+  .logo img { height: 40px; }
+  .brandstrip__logo img { height: 22px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
