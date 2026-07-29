@@ -6,6 +6,20 @@ const params = new URLSearchParams(location.search);
 const product = PRODUCTS.find(p => p.id === params.get('id'));
 const detail = document.getElementById('detail');
 
+/* ===== Canonical dinámico =====
+   ⚠️ REEMPLAZAR SITE_ORIGIN por el dominio real cuando esté definido
+   (debe coincidir con el usado en index.html, robots.txt y sitemap.xml). */
+const SITE_ORIGIN = 'https://www.gradin.com.uy';
+(function setCanonical() {
+  const href = product
+    ? `${SITE_ORIGIN}/producto.html?id=${product.id}`
+    : `${SITE_ORIGIN}/`;
+  const link = document.createElement('link');
+  link.rel = 'canonical';
+  link.href = href;
+  document.head.appendChild(link);
+})();
+
 if (!product) {
   detail.innerHTML = `
     <div class="detail__empty">
