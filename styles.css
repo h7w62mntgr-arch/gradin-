@@ -145,6 +145,7 @@ img { max-width: 100%; display: block; }
 }
 .brandstrip__logo[data-brand="titan"] img,
 .brandstrip__logo[data-brand="hsylift"] img { height: 96px; }
+.brandstrip__logo[data-brand="titan"] img { height: 120px; }
 .brandstrip__logo:hover { transform: translateY(-2px); }
 .brandstrip__logo.is-pending { opacity: .8; }
 .brandstrip__logo.is-pending img { filter: grayscale(.35); }

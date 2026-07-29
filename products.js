@@ -238,8 +238,8 @@ const PRODUCTS = [
       ['bi-box-seam-fill', 'Característica', 'Fácil carga'],
     ],
     images: [
-      'assets/plataforma-electrica-facilcarga2.jpeg',
-      'assets/plataforma-elevadora-facilcarga.jpeg',
+      'assets/plataforma-facilcarga-12m.jpeg',
+      'assets/plataforma-facilcarga-12m-2.jpeg',
     ],
   },
 
@@ -305,8 +305,8 @@ const PRODUCTS = [
    pending: true → marca sin material aún, se muestra como “Próximamente”.   */
 const BRANDS = [
   { id: 'gradin',  name: 'GRADIN',   logo: 'assets/gradin.png' },
-  { id: 'titan',   name: 'TITAN',    logo: 'assets/logo-titan.jpeg', pending: true },
-  { id: 'hsylift', name: 'HSY LIFT', logo: 'assets/logo-hsylift.jpeg' },
+  { id: 'titan',   name: 'TITAN',    logo: 'assets/logo-titan.png', pending: true },
+  { id: 'hsylift', name: 'HSY LIFT', logo: 'assets/logo-hsylift.png' },
 ];
 
 const WHATSAPP_NUMBER = '59897150208';
