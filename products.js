@@ -305,7 +305,7 @@ const PRODUCTS = [
    pending: true → marca sin material aún, se muestra como “Próximamente”.   */
 const BRANDS = [
   { id: 'gradin',  name: 'GRADIN',   logo: 'assets/gradin.png' },
-  { id: 'titan',   name: 'TITAN',    logo: 'assets/logo-titan.png', pending: true },
+  { id: 'titan',   name: 'TITAN',    logo: 'assets/logo-titan.png' },
   { id: 'hsylift', name: 'HSY LIFT', logo: 'assets/logo-hsylift.png' },
 ];
 
