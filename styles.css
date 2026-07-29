@@ -127,10 +127,10 @@ img { max-width: 100%; display: block; }
 .logo--footer { color: #fff; font-size: 1.7rem; }
 .logo--footer img { height: 100px; width: auto; }
 
-.header__brand { display: flex; align-items: center; gap: 40px; }
+.header__brand { display: flex; align-items: center; gap: 24px; }
 
 /* Marcas junto a GRADIN (clic → filtra sus equipos) */
-.brandstrip { display: flex; align-items: center; gap: 26px; }
+.brandstrip { display: flex; align-items: center; gap: 40px; }
 .brandstrip__logo {
   position: relative;
   display: flex;
@@ -859,9 +859,9 @@ img { max-width: 100%; display: block; }
   .detail { grid-template-columns: 1fr; gap: 30px; }
   .trust__inner { grid-template-columns: repeat(2, 1fr); }
   .footer__inner { grid-template-columns: 1fr; }
-  .header__brand { gap: 22px; }
+  .header__brand { gap: 16px; }
   .logo img { height: 72px; }
-  .brandstrip { gap: 18px; }
+  .brandstrip { gap: 28px; }
   .brandstrip__logo img { height: 52px; }
   .brandstrip__logo[data-brand="titan"] img,
   .brandstrip__logo[data-brand="hsylift"] img { height: 96px; }
