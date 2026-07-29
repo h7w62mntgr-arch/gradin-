@@ -151,6 +151,43 @@ if (!product) {
   thumbBtns().forEach(b =>
     b.addEventListener('click', () => show(Number(b.dataset.index)))
   );
+
+  /* ----- Lightbox: ampliar la imagen (útil para leer la ficha técnica) ----- */
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox';
+  lightbox.innerHTML = `
+    <button class="lightbox__close" aria-label="Cerrar"><i class="bi bi-x-lg"></i></button>
+    <div class="lightbox__scroll">
+      <img class="lightbox__img" alt="${product.name} — imagen ampliada">
+    </div>
+    <span class="lightbox__hint">Tocá la imagen para acercar · Esc para cerrar</span>`;
+  document.body.appendChild(lightbox);
+
+  const lbImg = lightbox.querySelector('.lightbox__img');
+  const lbScroll = lightbox.querySelector('.lightbox__scroll');
+
+  function openLightbox() {
+    lbImg.src = imgs[idx];
+    lightbox.classList.remove('is-zoomed');
+    lightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('is-open', 'is-zoomed');
+    document.body.style.overflow = '';
+  }
+
+  galImg.addEventListener('click', openLightbox);
+  lightbox.querySelector('.lightbox__close').addEventListener('click', closeLightbox);
+  lbScroll.addEventListener('click', e => { if (e.target === lbScroll) closeLightbox(); });
+  lbImg.addEventListener('click', e => {
+    e.stopPropagation();
+    lightbox.classList.toggle('is-zoomed');
+    lbScroll.scrollTop = 0;
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
 }
 
 /* ===== Menú móvil ===== */

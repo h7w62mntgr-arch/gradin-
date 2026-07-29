@@ -925,6 +925,82 @@ img { max-width: 100%; display: block; }
   .brandstrip__logo[data-brand="hsylift"] img { height: 52px; }
 }
 
+/* ===== Lightbox de galería (ampliar imagen / ficha técnica) ===== */
+.gallery__main #galImg { cursor: zoom-in; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: none;
+  background: rgba(9, 20, 44, .93);
+  backdrop-filter: blur(2px);
+}
+.lightbox.is-open { display: block; }
+.lightbox__scroll {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  -webkit-overflow-scrolling: touch;
+}
+.lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  cursor: zoom-in;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+  user-select: none;
+}
+.lightbox.is-zoomed .lightbox__scroll {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.lightbox.is-zoomed .lightbox__img {
+  max-width: none;
+  max-height: none;
+  width: min(1600px, 200vw);
+  height: auto;
+  cursor: zoom-out;
+}
+.lightbox__close {
+  position: fixed;
+  top: 16px;
+  right: 18px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .14);
+  color: #fff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background .2s;
+}
+.lightbox__close:hover { background: rgba(255, 255, 255, .28); }
+.lightbox__hint {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 2;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  font-size: .82rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto; }
 }
