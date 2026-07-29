@@ -238,8 +238,8 @@ const PRODUCTS = [
       ['bi-box-seam-fill', 'Característica', 'Fácil carga'],
     ],
     images: [
-      'assets/plataforma-elevadora-facilcarga.jpeg',
       'assets/plataforma-electrica-facilcarga2.jpeg',
+      'assets/plataforma-elevadora-facilcarga.jpeg',
     ],
   },
 
