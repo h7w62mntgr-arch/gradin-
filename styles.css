@@ -108,6 +108,8 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: space-between;
   padding-block: 8px;
+  max-width: none;
+  padding-inline: 38px;
 }
 .logo {
   font-weight: 900;
@@ -127,10 +129,12 @@ img { max-width: 100%; display: block; }
 .logo--footer { color: #fff; font-size: 1.7rem; }
 .logo--footer img { height: 100px; width: auto; }
 
-.header__brand { display: flex; align-items: center; gap: 24px; }
+.header__brand { display: flex; align-items: center; gap: 88px; }
+.header__brand .logo { margin-left: 0; }
+.header__brand .logo img { height: 132px; }
 
 /* Marcas junto a GRADIN (clic → filtra sus equipos) */
-.brandstrip { display: flex; align-items: center; gap: 40px; }
+.brandstrip { display: flex; align-items: center; gap: 24px; }
 .brandstrip__logo {
   position: relative;
   display: flex;
@@ -146,6 +150,8 @@ img { max-width: 100%; display: block; }
 .brandstrip__logo[data-brand="titan"] img,
 .brandstrip__logo[data-brand="hsylift"] img { height: 96px; }
 .brandstrip__logo[data-brand="titan"] img { height: 120px; }
+.brandstrip__logo[data-brand="hsylift"] img { height: 82px; }
+.brandstrip__logo[data-brand="gradin"] img { height: 44px; }
 .brandstrip__logo:hover { transform: translateY(-2px); }
 .brandstrip__logo.is-pending { opacity: .8; }
 .brandstrip__logo.is-pending img { filter: grayscale(.35); }
@@ -865,16 +871,18 @@ img { max-width: 100%; display: block; }
   .brandstrip__logo img { height: 52px; }
   .brandstrip__logo[data-brand="titan"] img,
   .brandstrip__logo[data-brand="hsylift"] img { height: 96px; }
+  .brandstrip__logo[data-brand="gradin"] img { height: 42px; }
 }
 
 @media (max-width: 760px) {
   html { scroll-padding-top: 84px; }
   .logo img { height: 56px; }
-  .header__brand { gap: 14px; }
+  .header__brand { gap: 20px; }
   .brandstrip { gap: 12px; }
   .brandstrip__logo img { height: 42px; }
   .brandstrip__logo[data-brand="titan"] img,
   .brandstrip__logo[data-brand="hsylift"] img { height: 74px; }
+  .brandstrip__logo[data-brand="gradin"] img { height: 34px; }
   .brandstrip__soon { display: none; }
   .nav {
     position: absolute;
@@ -912,6 +920,7 @@ img { max-width: 100%; display: block; }
   .brandstrip__logo img { height: 36px; }
   .brandstrip__logo[data-brand="titan"] img,
   .brandstrip__logo[data-brand="hsylift"] img { height: 62px; }
+  .brandstrip__logo[data-brand="gradin"] img { height: 29px; }
   .brandbar { gap: 8px; }
   .brandbar__chip { padding: 7px 14px; font-size: .84rem; }
   .grid--products { grid-template-columns: 1fr; }
@@ -923,6 +932,7 @@ img { max-width: 100%; display: block; }
   .brandstrip__logo img { height: 30px; }
   .brandstrip__logo[data-brand="titan"] img,
   .brandstrip__logo[data-brand="hsylift"] img { height: 52px; }
+  .brandstrip__logo[data-brand="gradin"] img { height: 24px; }
 }
 
 /* ===== Lightbox de galería (ampliar imagen / ficha técnica) ===== */
