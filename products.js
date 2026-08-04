@@ -43,7 +43,7 @@ const PRODUCTS = [
     id: 'bateria-9m',
     brand: 'gradin',
     name: 'Plataforma a Batería 11 m',
-    tag: 'Autopropulsada',
+    tag: 'Caminar asistido',
     hot: true,
     icon: 'bi-battery-charging',
     precio: '7.990',
@@ -52,7 +52,7 @@ const PRODUCTS = [
     cuota: '222',
     alquilerDia: '100',
     alquilerSemana: '350',
-    desc: 'Plataforma de tijera autopropulsada con desplazamiento a batería. Se mueve sin cables ni combustible, ideal para trabajos prolongados en interiores donde se necesita autonomía y bajo mantenimiento.',
+    desc: 'Plataforma de tijera con desplazamiento a batería y caminar asistido. Incluye kit de elevación. Se mueve sin cables ni combustible, ideal para trabajos prolongados en interiores donde se necesita autonomía y bajo mantenimiento.',
     cardSpecs: [
       ['bi-arrows-expand', '11 m'],
       ['bi-box-seam', '500 kg'],
@@ -64,7 +64,8 @@ const PRODUCTS = [
       ['bi-box-seam', 'Carga nominal', '500 kg'],
       ['bi-rulers', 'Dimensión total', '2016 × 1000 × 1535 mm'],
       ['bi-speedometer', 'Peso total', '1150 kg'],
-      ['bi-battery-charging', 'Desplazamiento', 'A batería (autopropulsada)'],
+      ['bi-battery-charging', 'Desplazamiento', 'Caminar asistido a batería'],
+      ['bi-arrow-up-circle', 'Kit de elevación', 'Incluido'],
       ['bi-patch-check-fill', 'Garantía', '6 meses por escrito'],
     ],
     images: [
@@ -268,7 +269,7 @@ const PRODUCTS = [
       ['bi-battery-charging', 'Batería / Cargador', '12 V 66 Ah / 12 V 65 Ah'],
     ],
     images: [
-      'assets/plataforma-compacta-5.7m.jpeg',
+      'assets/plataforma-nopixeleada.jpeg',
       'assets/ficha-tijera-5,7m.jpeg',
     ],
   },
