@@ -7,18 +7,72 @@ const product = PRODUCTS.find(p => p.id === params.get('id'));
 const detail = document.getElementById('detail');
 
 /* ===== Canonical dinámico =====
-   ⚠️ REEMPLAZAR SITE_ORIGIN por el dominio real cuando esté definido
-   (debe coincidir con el usado en index.html, robots.txt y sitemap.xml). */
-const SITE_ORIGIN = 'https://www.gradin.com.uy';
+   SITE_ORIGIN debe coincidir con el usado en index.html, robots.txt y sitemap.xml. */
+const SITE_ORIGIN = 'https://www.gradinuruguay.com.uy';
+const pageURL = product
+  ? `${SITE_ORIGIN}/producto.html?id=${product.id}`
+  : `${SITE_ORIGIN}/`;
+
 (function setCanonical() {
-  const href = product
-    ? `${SITE_ORIGIN}/producto.html?id=${product.id}`
-    : `${SITE_ORIGIN}/`;
   const link = document.createElement('link');
   link.rel = 'canonical';
-  link.href = href;
+  link.href = pageURL;
   document.head.appendChild(link);
 })();
+
+/* ===== Datos estructurados de la ficha =====
+   Product + Offer le dan a Google precio y disponibilidad del equipo, y
+   BreadcrumbList le da la ruta Inicio › Maquinaria › <equipo>.        */
+function addJsonLd(data) {
+  const s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.textContent = JSON.stringify(data);
+  document.head.appendChild(s);
+}
+
+if (product) {
+  const marca = (typeof BRANDS !== 'undefined' && BRANDS.find(b => b.id === product.brand)) || null;
+
+  const producto = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.desc,
+    sku: product.id,
+    image: product.images.map(src => `${SITE_ORIGIN}/${src}`),
+    brand: { '@type': 'Brand', name: marca ? marca.name : 'GRADIN' },
+    additionalProperty: product.specs.map(s => ({
+      '@type': 'PropertyValue', name: s[1], value: s[2],
+    })),
+  };
+
+  /* Sólo publicamos precio cuando hay precio de venta. Los equipos que son
+     únicamente de alquiler no llevan Offer: poner ahí la tarifa por día haría
+     que Google muestre "USD 120" como si fuera el precio del equipo. */
+  if (product.precio) {
+    producto.offers = {
+      '@type': 'Offer',
+      url: pageURL,
+      priceCurrency: 'USD',
+      price: Number(product.precio.replace(/\./g, '')),
+      availability: product.soon
+        ? 'https://schema.org/PreOrder'
+        : 'https://schema.org/InStock',
+      seller: { '@type': 'Organization', name: 'GRADIN' },
+    };
+  }
+  addJsonLd(producto);
+
+  addJsonLd({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_ORIGIN}/` },
+      { '@type': 'ListItem', position: 2, name: 'Maquinaria', item: `${SITE_ORIGIN}/#productos` },
+      { '@type': 'ListItem', position: 3, name: product.name, item: pageURL },
+    ],
+  });
+}
 
 if (!product) {
   detail.innerHTML = `
@@ -31,6 +85,11 @@ if (!product) {
 } else {
   document.title = `GRADIN · ${product.name}`;
 
+  /* Meta description propia por equipo: si todas las fichas comparten la
+     misma, Google las lee como contenido duplicado. */
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.content = product.desc.slice(0, 155);
+
   const waText = encodeURIComponent(
     product.soon
       ? `Hola GRADIN, quiero reservar la ${product.name} (próximo ingreso). ¿Cómo hago la reserva?`
@@ -39,9 +98,15 @@ if (!product) {
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
   const ctaLabel = product.soon ? 'Reservar por WhatsApp' : 'Consultar por WhatsApp';
 
+  /* width/height reales de una foto, para que el navegador reserve el espacio. */
+  const dimsAttr = (src) => {
+    const d = IMAGE_DIMS[src];
+    return d ? ` width="${d[0]}" height="${d[1]}"` : '';
+  };
+
   const thumbs = product.images.map((src, i) => `
-    <button class="gallery__thumb ${i === 0 ? 'is-active' : ''}" data-index="${i}" aria-label="Foto ${i + 1}">
-      <img src="${src}" alt="${product.name} — foto ${i + 1}" onerror="this.style.display='none'">
+    <button type="button" class="gallery__thumb ${i === 0 ? 'is-active' : ''}" data-index="${i}" aria-label="Ver foto ${i + 1} de ${product.images.length}" aria-pressed="${i === 0}">
+      <img src="${src}" alt="${product.name} — foto ${i + 1}"${dimsAttr(src)} loading="lazy" decoding="async" onerror="this.style.display='none'">
       <i class="bi ${product.icon}"></i>
     </button>`).join('');
 
@@ -103,10 +168,11 @@ if (!product) {
   detail.innerHTML = `
     <div class="detail__gallery">
       <div class="gallery__main" id="galMain">
-        <img id="galImg" src="${product.images[0]}" alt="${product.name}">
+        <img id="galImg" src="${product.images[0]}" alt="${product.name}"${dimsAttr(product.images[0])} fetchpriority="high"
+             tabindex="0" role="button" aria-label="Ampliar imagen de ${product.name}">
         <div class="gallery__ph"><i class="bi ${product.icon}"></i><span>Foto próximamente</span></div>
-        <button class="gallery__nav gallery__nav--prev" id="galPrev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
-        <button class="gallery__nav gallery__nav--next" id="galNext" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
+        <button type="button" class="gallery__nav gallery__nav--prev" id="galPrev" aria-label="Foto anterior"><i class="bi bi-chevron-left"></i></button>
+        <button type="button" class="gallery__nav gallery__nav--next" id="galNext" aria-label="Foto siguiente"><i class="bi bi-chevron-right"></i></button>
       </div>
       <div class="gallery__thumbs">${thumbs}</div>
     </div>
@@ -143,7 +209,12 @@ if (!product) {
     idx = (i + imgs.length) % imgs.length;
     galMain.classList.remove('is-missing');
     galImg.src = imgs[idx];
-    thumbBtns().forEach((b, n) => b.classList.toggle('is-active', n === idx));
+    const d = IMAGE_DIMS[imgs[idx]];
+    if (d) { galImg.width = d[0]; galImg.height = d[1]; }
+    thumbBtns().forEach((b, n) => {
+      b.classList.toggle('is-active', n === idx);
+      b.setAttribute('aria-pressed', String(n === idx));
+    });
   }
 
   document.getElementById('galPrev').addEventListener('click', () => show(idx - 1));
@@ -155,8 +226,12 @@ if (!product) {
   /* ----- Lightbox: ampliar la imagen (útil para leer la ficha técnica) ----- */
   const lightbox = document.createElement('div');
   lightbox.className = 'lightbox';
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', `${product.name} — imagen ampliada`);
+  lightbox.hidden = true;
   lightbox.innerHTML = `
-    <button class="lightbox__close" aria-label="Cerrar"><i class="bi bi-x-lg"></i></button>
+    <button type="button" class="lightbox__close" aria-label="Cerrar imagen ampliada"><i class="bi bi-x-lg"></i></button>
     <div class="lightbox__scroll">
       <img class="lightbox__img" alt="${product.name} — imagen ampliada">
     </div>
@@ -165,20 +240,36 @@ if (!product) {
 
   const lbImg = lightbox.querySelector('.lightbox__img');
   const lbScroll = lightbox.querySelector('.lightbox__scroll');
+  const lbClose = lightbox.querySelector('.lightbox__close');
+  let focoPrevio = null;
 
   function openLightbox() {
+    focoPrevio = document.activeElement;
     lbImg.src = imgs[idx];
     lightbox.classList.remove('is-zoomed');
+    lightbox.hidden = false;
     lightbox.classList.add('is-open');
     document.body.style.overflow = 'hidden';
+    lbClose.focus();
   }
   function closeLightbox() {
+    if (!lightbox.classList.contains('is-open')) return;
     lightbox.classList.remove('is-open', 'is-zoomed');
+    lightbox.hidden = true;
     document.body.style.overflow = '';
+    /* Devolvemos el foco a donde estaba: si no, con teclado quedás al
+       principio de la página cada vez que cerrás una foto. */
+    if (focoPrevio && document.contains(focoPrevio)) focoPrevio.focus();
+    focoPrevio = null;
   }
 
   galImg.addEventListener('click', openLightbox);
-  lightbox.querySelector('.lightbox__close').addEventListener('click', closeLightbox);
+  /* La foto principal es alcanzable con Tab (role="button"), así que también
+     tiene que abrirse con Enter o Espacio. */
+  galImg.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(); }
+  });
+  lbClose.addEventListener('click', closeLightbox);
   lbScroll.addEventListener('click', e => { if (e.target === lbScroll) closeLightbox(); });
   lbImg.addEventListener('click', e => {
     e.stopPropagation();
@@ -186,17 +277,26 @@ if (!product) {
     lbScroll.scrollTop = 0;
   });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeLightbox();
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') { closeLightbox(); return; }
+    /* Mientras está abierto, el foco no se escapa al fondo de la página. */
+    if (e.key === 'Tab') { e.preventDefault(); lbClose.focus(); }
   });
 }
 
 /* ===== Menú móvil ===== */
 const nav = document.getElementById('nav');
 const toggle = document.getElementById('navToggle');
-toggle.addEventListener('click', () => {
-  nav.classList.toggle('is-open');
-  toggle.classList.toggle('is-open');
-});
+function setNav(abierto) {
+  nav.classList.toggle('is-open', abierto);
+  toggle.classList.toggle('is-open', abierto);
+  toggle.setAttribute('aria-expanded', String(abierto));
+  toggle.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+}
+toggle.addEventListener('click', () => setNav(!nav.classList.contains('is-open')));
+/* Los links del menú navegan a index.html, pero en el caso del ancla de la
+   misma página el menú quedaba abierto tapando todo. */
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNav(false)));
 
 /* ===== Header shadow al hacer scroll ===== */
 const header = document.getElementById('header');

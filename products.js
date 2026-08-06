@@ -302,12 +302,44 @@ const PRODUCTS = [
   },
 ];
 
+/* ===== Dimensiones reales de cada foto (ancho, alto) =====
+   Se emiten como width/height en el <img> para que el navegador reserve
+   el espacio antes de descargar la imagen y no salte el layout (CLS).
+   Si agregás una foto nueva, sumá acá sus medidas.               */
+const IMAGE_DIMS = {
+  'assets/andamio-electrico.jpeg': [1180, 1333],
+  'assets/articulada-hsylift.jpeg': [1288, 1221],
+  'assets/ficha-tecncicaarticulada.jpeg': [1065, 1477],
+  'assets/ficha-tijera-5,7m.jpeg': [1179, 1437],
+  'assets/gradin.png': [600, 194],
+  'assets/logo-hsylift.png': [1024, 1024],
+  'assets/logo-titan.png': [896, 1195],
+  'assets/plataforma-electrica-autopropulsada.jpeg': [1086, 1448],
+  'assets/plataforma-facilcarga-12m-2.jpeg': [1086, 1448],
+  'assets/plataforma-facilcarga-12m.jpeg': [1086, 1448],
+  'assets/plataforma-nopixeleada.jpeg': [1055, 1491],
+  'assets/productos/bateria-9m-1.jpg': [1179, 1710],
+  'assets/productos/bateria-9m-2.jpg': [1179, 1520],
+  'assets/productos/boom-16m-1.jpg': [1142, 1377],
+  'assets/productos/boom-16m-2.jpg': [1179, 1484],
+  'assets/productos/boom-16m-3.jpg': [1179, 1475],
+  'assets/productos/manual-9m-1.jpg': [896, 1181],
+  'assets/productos/manual-9m-2.jpg': [704, 1524],
+  'assets/productos/montacargas-1.jpg': [1179, 1240],
+  'assets/productos/montacargas-2.jpg': [1086, 1448],
+  'assets/productos/unipersonal-1.jpg': [1265, 1243],
+  'assets/productos/unipersonal-2.jpg': [928, 1144],
+  'assets/productos/unipersonal-3.jpg': [1008, 1063],
+};
+
 /* ===== Marcas (se muestran junto a GRADIN; cada logo filtra sus equipos) =====
-   pending: true → marca sin material aún, se muestra como “Próximamente”.   */
+   pending: true → marca sin material aún, se muestra como “Próximamente”.
+   w/h: dimensiones reales del archivo, para que el navegador reserve el
+   espacio del logo antes de descargarlo (evita saltos de layout / CLS).   */
 const BRANDS = [
-  { id: 'gradin',  name: 'GRADIN',   logo: 'assets/gradin.png' },
-  { id: 'titan',   name: 'TITAN',    logo: 'assets/logo-titan.png' },
-  { id: 'hsylift', name: 'HSY LIFT', logo: 'assets/logo-hsylift.png' },
+  { id: 'gradin',  name: 'GRADIN',   logo: 'assets/gradin.png',       w: 600,  h: 194 },
+  { id: 'titan',   name: 'TITAN',    logo: 'assets/logo-titan.png',   w: 896,  h: 1195 },
+  { id: 'hsylift', name: 'HSY LIFT', logo: 'assets/logo-hsylift.png', w: 1024, h: 1024 },
 ];
 
 const WHATSAPP_NUMBER = '59897150208';

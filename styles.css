@@ -22,7 +22,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 112px; }
+html { scroll-behavior: smooth; scroll-padding-top: 160px; }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -43,6 +43,22 @@ img { max-width: 100%; display: block; }
 }
 
 .text-accent { color: var(--accent); }
+
+/* Saltar al contenido (sólo visible al navegar con teclado) */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: 200;
+  padding: 12px 22px;
+  background: var(--blue-700);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  transition: transform .2s var(--ease);
+}
+.skip-link:focus-visible { transform: translate(-50%, 0); }
 
 /* ===== Icons ===== */
 .bi { display: inline-block; line-height: 1; vertical-align: -.125em; }
@@ -179,6 +195,8 @@ img { max-width: 100%; display: block; }
   gap: 10px;
   margin-top: 22px;
 }
+/* `display:flex` pisa el [hidden] del navegador: hay que reponerlo a mano. */
+.brandbar[hidden] { display: none; }
 .brandbar__chip {
   border: 1px solid var(--line);
   background: #fff;
@@ -384,7 +402,7 @@ img { max-width: 100%; display: block; }
 }
 .pcard h3 { font-size: 1.2rem; font-weight: 800; }
 .pcard__price { font-size: 1.9rem; font-weight: 900; color: var(--blue-700); margin-top: 6px; }
-.pcard__price small { font-size: .85rem; color: var(--muted); font-weight: 600; }
+.pcard__price small { font-size: .85rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
 .pcard__sub { color: var(--muted); font-size: .88rem; margin-bottom: 16px; }
 .pcard__specs {
   display: flex; flex-wrap: wrap; gap: 8px;
@@ -627,10 +645,16 @@ img { max-width: 100%; display: block; }
   transition: border-color .2s, background .2s;
 }
 .field input:focus, .field select:focus, .field textarea:focus {
-  outline: none;
   border-color: var(--blue-500);
   background: #fff;
 }
+/* Foco de teclado visible en todo lo interactivo (WCAG 2.4.7). */
+:focus-visible {
+  outline: 3px solid var(--blue-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.footer :focus-visible, .hero :focus-visible, .finance :focus-visible { outline-color: var(--accent); }
 .field textarea { resize: vertical; }
 .form__note { color: #178a4c; font-weight: 600; text-align: center; }
 
@@ -866,7 +890,8 @@ img { max-width: 100%; display: block; }
   .trust__inner { grid-template-columns: repeat(2, 1fr); }
   .footer__inner { grid-template-columns: 1fr; }
   .header__brand { gap: 16px; }
-  .logo img { height: 72px; }
+  .logo img,
+  .header__brand .logo img { height: 72px; }
   .brandstrip { gap: 28px; }
   .brandstrip__logo img { height: 52px; }
   .brandstrip__logo[data-brand="titan"] img,
@@ -875,8 +900,9 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 760px) {
-  html { scroll-padding-top: 84px; }
-  .logo img { height: 56px; }
+  html { scroll-padding-top: 100px; }
+  .logo img,
+  .header__brand .logo img { height: 56px; }
   .header__brand { gap: 20px; }
   .brandstrip { gap: 12px; }
   .brandstrip__logo img { height: 42px; }
@@ -906,7 +932,9 @@ img { max-width: 100%; display: block; }
   .nav__cta { margin: 8px 0 0; }
   .nav__toggle { display: flex; }
   .topbar__inner { justify-content: center; }
-  .topbar__item:first-child { display: none; }
+  /* Se oculta sólo la dirección; el teléfono y WhatsApp quedan siempre visibles. */
+  .topbar__inner > .topbar__item:first-child { display: none; }
+  .topbar__right { gap: 14px; }
 }
 
 @media (max-width: 480px) {
@@ -914,7 +942,8 @@ img { max-width: 100%; display: block; }
   .finance__cards { grid-template-columns: 1fr; }
   .hero__stats { gap: 24px; }
   .section { padding-block: 60px; }
-  .logo img { height: 46px; }
+  .logo img,
+  .header__brand .logo img { height: 46px; }
   .header__brand { gap: 10px; }
   .brandstrip { gap: 8px; }
   .brandstrip__logo img { height: 36px; }
@@ -928,7 +957,8 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 360px) {
-  .logo img { height: 40px; }
+  .logo img,
+  .header__brand .logo img { height: 40px; }
   .brandstrip__logo img { height: 30px; }
   .brandstrip__logo[data-brand="titan"] img,
   .brandstrip__logo[data-brand="hsylift"] img { height: 52px; }
