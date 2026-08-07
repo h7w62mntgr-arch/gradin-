@@ -1,6 +1,6 @@
 /* ===== Catálogo de maquinaria =====
    Los datos viven en products.js (PRODUCTS). Cada tarjeta es un enlace
-   a la página de detalle producto.html?id=<id>.                        */
+   a su ficha estática en maquinaria/<slug>/ (la genera build.mjs).     */
 const grid = document.getElementById('productGrid');
 const brandBar = document.getElementById('brandBar');
 const brandStrip = document.getElementById('brandStrip');
@@ -92,7 +92,7 @@ function render() {
   grid.innerHTML = list.map((p, i) => {
     const { priceHTML, subHTML, badge, cta } = cardCopy(p, isVenta);
     return `
-      <a class="pcard pcard--link ${p.soon ? 'pcard--soon' : ''}" href="producto.html?id=${p.id}" style="animation-delay:${i * 60}ms">
+      <a class="pcard pcard--link ${p.soon ? 'pcard--soon' : ''}" href="maquinaria/${p.slug}/" style="animation-delay:${i * 60}ms">
         <div class="pcard__img pcard__img--photo">
           <img src="${p.images[0]}" alt="${p.name}"${dimsAttr(p.images[0])} loading="lazy" decoding="async" onerror="this.style.display='none'">
           <i class="bi ${p.icon} pcard__img-ph"></i>
@@ -119,7 +119,7 @@ function syncHeroCard() {
   if (!p) return;
 
   const { priceHTML, subHTML } = cardCopy(p, true);
-  card.href = `producto.html?id=${p.id}`;
+  card.href = `maquinaria/${p.slug}/`;
   card.querySelector('h3').textContent = p.name;
   card.querySelector('.pcard__price').innerHTML = priceHTML;
   card.querySelector('.pcard__sub').textContent = subHTML;

@@ -1,6 +1,10 @@
 /* ===== Catálogo de maquinaria (fuente única de datos) =====
    Cada producto se muestra en el catálogo (index) y en su página de
-   detalle (producto.html?id=<id>).
+   detalle, que build.mjs genera como HTML estático en
+   maquinaria/<slug>/index.html.
+
+   slug: define la URL pública del equipo y NO conviene cambiarlo una vez
+   publicado (cambiarlo rompe los enlaces que ya circulan).
 
    FOTOS: colocá las imágenes en assets/productos/ con estos nombres.
    Mientras no existan, se muestra un placeholder automáticamente.        */
@@ -8,6 +12,7 @@
 const PRODUCTS = [
   {
     id: 'unipersonal',
+    slug: 'plataforma-unipersonal',
     brand: 'gradin',
     name: 'Plataforma Unipersonal',
     tag: 'Eléctrica',
@@ -41,6 +46,7 @@ const PRODUCTS = [
   },
   {
     id: 'bateria-9m',
+    slug: 'plataforma-bateria-11m',
     brand: 'gradin',
     name: 'Plataforma a Batería 11 m',
     tag: 'Caminar asistido',
@@ -75,6 +81,7 @@ const PRODUCTS = [
   },
   {
     id: 'manual-9m',
+    slug: 'plataforma-manual-11m',
     brand: 'gradin',
     name: 'Plataforma Manual 11 m',
     tag: 'Única unidad',
@@ -108,6 +115,7 @@ const PRODUCTS = [
   },
   {
     id: 'boom-16m',
+    slug: 'plataforma-boom-16m',
     brand: 'gradin',
     name: 'Plataforma Boom 16 m',
     tag: 'Oferta',
@@ -143,6 +151,7 @@ const PRODUCTS = [
   },
   {
     id: 'montacargas',
+    slug: 'montacargas-2-5t',
     brand: 'gradin',
     name: 'Montacargas 2.5 T',
     tag: 'Solo alquiler',
@@ -169,6 +178,7 @@ const PRODUCTS = [
   /* ===== GRADIN · Próximamente (ya podés reservar) ===== */
   {
     id: 'andamio-electrico',
+    slug: 'andamio-electrico',
     brand: 'gradin',
     name: 'Andamio Eléctrico',
     tag: 'Próximamente',
@@ -193,6 +203,7 @@ const PRODUCTS = [
   },
   {
     id: 'autopropulsada-10m',
+    slug: 'plataforma-electrica-autopropulsada-10m',
     brand: 'gradin',
     name: 'Plataforma Eléctrica Autopropulsada 10 m',
     tag: 'Próximamente',
@@ -220,6 +231,7 @@ const PRODUCTS = [
   },
   {
     id: 'facilcarga-12m',
+    slug: 'plataforma-electrica-facil-carga-12m',
     brand: 'gradin',
     name: 'Plataforma Eléctrica Fácil Carga 12 m',
     tag: 'Próximamente',
@@ -247,6 +259,7 @@ const PRODUCTS = [
   /* ===== HSY LIFT ===== */
   {
     id: 'hsylift-compacta',
+    slug: 'plataforma-compacta-5-7m',
     brand: 'hsylift',
     name: 'Plataforma Compacta 5.7 m',
     tag: 'HSY LIFT',
@@ -275,6 +288,7 @@ const PRODUCTS = [
   },
   {
     id: 'hsylift-articulada',
+    slug: 'plataforma-articulada-remolcable-14m',
     brand: 'hsylift',
     name: 'Plataforma Articulada Remolcable 14 m',
     tag: 'HSY LIFT',

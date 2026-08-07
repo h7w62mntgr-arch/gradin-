@@ -147,9 +147,17 @@ img { max-width: 100%; display: block; }
 
 .header__brand { display: flex; align-items: center; gap: 88px; }
 .header__brand .logo { margin-left: 0; }
-.header__brand .logo img { height: 132px; }
+.header__brand .logo img { height: calc(var(--wordmark) / .5); }
 
-/* Marcas junto a GRADIN (clic → filtra sus equipos) */
+/* ===== Marcas junto a GRADIN (clic → filtra sus equipos) =====
+   Cada archivo trae una cantidad distinta de margen transparente, así que una
+   altura igual para todos los deja de tamaños visuales muy distintos. En vez de
+   fijar el alto del archivo, fijamos el alto de la MARCA VISIBLE (--wordmark) y
+   dividimos por la proporción que ocupa dentro de su archivo (--marca).
+   Medido sobre los píxeles no transparentes de cada logo:
+     DIAMANTO 198/400 = .50 · GRADIN 126/194 = .65
+     TITAN    372/1195 = .31 · HSY LIFT 764/1024 = .75            */
+.header__brand { --wordmark: 66px; }
 .brandstrip { display: flex; align-items: center; gap: 24px; }
 .brandstrip__logo {
   position: relative;
@@ -157,17 +165,16 @@ img { max-width: 100%; display: block; }
   align-items: center;
   transition: transform .2s, opacity .2s;
 }
+/* Las marcas secundarias van al 62% de la principal: se leen, pero no compiten. */
 .brandstrip__logo img {
-  height: 54px;
+  height: calc(var(--wordmark) * .62 / var(--marca, .5));
   width: auto;
   display: block;
   object-fit: contain;
 }
-.brandstrip__logo[data-brand="titan"] img,
-.brandstrip__logo[data-brand="hsylift"] img { height: 96px; }
-.brandstrip__logo[data-brand="titan"] img { height: 120px; }
-.brandstrip__logo[data-brand="hsylift"] img { height: 82px; }
-.brandstrip__logo[data-brand="gradin"] img { height: 44px; }
+.brandstrip__logo[data-brand="gradin"]  { --marca: .65; }
+.brandstrip__logo[data-brand="titan"]   { --marca: .31; }
+.brandstrip__logo[data-brand="hsylift"] { --marca: .75; }
 .brandstrip__logo:hover { transform: translateY(-2px); }
 .brandstrip__logo.is-pending { opacity: .8; }
 .brandstrip__logo.is-pending img { filter: grayscale(.35); }
@@ -889,26 +896,20 @@ img { max-width: 100%; display: block; }
   .detail { grid-template-columns: 1fr; gap: 30px; }
   .trust__inner { grid-template-columns: repeat(2, 1fr); }
   .footer__inner { grid-template-columns: 1fr; }
-  .header__brand { gap: 16px; }
-  .logo img,
-  .header__brand .logo img { height: 72px; }
-  .brandstrip { gap: 28px; }
-  .brandstrip__logo img { height: 52px; }
-  .brandstrip__logo[data-brand="titan"] img,
-  .brandstrip__logo[data-brand="hsylift"] img { height: 96px; }
-  .brandstrip__logo[data-brand="gradin"] img { height: 42px; }
+  .header__brand { gap: 16px; --wordmark: 36px; }
+  .logo img { height: 72px; }
+  .brandstrip { gap: 22px; }
 }
 
 @media (max-width: 760px) {
   html { scroll-padding-top: 100px; }
-  .logo img,
-  .header__brand .logo img { height: 56px; }
-  .header__brand { gap: 20px; }
-  .brandstrip { gap: 12px; }
-  .brandstrip__logo img { height: 42px; }
-  .brandstrip__logo[data-brand="titan"] img,
-  .brandstrip__logo[data-brand="hsylift"] img { height: 74px; }
-  .brandstrip__logo[data-brand="gradin"] img { height: 34px; }
+  .logo img { height: 56px; }
+  /* En mobile el header se pega al borde y las marcas suben al 78% de la
+     principal, para que se sigan leyendo sus nombres en pantalla chica. */
+  .header__inner { padding-inline: 12px; }
+  .header__brand { gap: 14px; --wordmark: 30px; }
+  .brandstrip__logo img { height: calc(var(--wordmark) * .78 / var(--marca, .5)); }
+  .brandstrip { gap: 14px; }
   .brandstrip__soon { display: none; }
   .nav {
     position: absolute;
@@ -942,14 +943,10 @@ img { max-width: 100%; display: block; }
   .finance__cards { grid-template-columns: 1fr; }
   .hero__stats { gap: 24px; }
   .section { padding-block: 60px; }
-  .logo img,
-  .header__brand .logo img { height: 46px; }
-  .header__brand { gap: 10px; }
-  .brandstrip { gap: 8px; }
-  .brandstrip__logo img { height: 36px; }
-  .brandstrip__logo[data-brand="titan"] img,
-  .brandstrip__logo[data-brand="hsylift"] img { height: 62px; }
-  .brandstrip__logo[data-brand="gradin"] img { height: 29px; }
+  .logo img { height: 46px; }
+  .header__inner { padding-inline: 8px; }
+  .header__brand { gap: 10px; --wordmark: 26px; }
+  .brandstrip { gap: 10px; }
   .brandbar { gap: 8px; }
   .brandbar__chip { padding: 7px 14px; font-size: .84rem; }
   .grid--products { grid-template-columns: 1fr; }
@@ -957,12 +954,10 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 360px) {
-  .logo img,
-  .header__brand .logo img { height: 40px; }
-  .brandstrip__logo img { height: 30px; }
-  .brandstrip__logo[data-brand="titan"] img,
-  .brandstrip__logo[data-brand="hsylift"] img { height: 52px; }
-  .brandstrip__logo[data-brand="gradin"] img { height: 24px; }
+  .logo img { height: 40px; }
+  .header__inner { padding-inline: 6px; }
+  .header__brand { --wordmark: 22px; }
+  .brandstrip { gap: 8px; }
 }
 
 /* ===== Lightbox de galería (ampliar imagen / ficha técnica) ===== */
