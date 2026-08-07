@@ -157,7 +157,10 @@ img { max-width: 100%; display: block; }
    Medido sobre los píxeles no transparentes de cada logo:
      DIAMANTO 198/400 = .50 · GRADIN 126/194 = .65
      TITAN    372/1195 = .31 · HSY LIFT 764/1024 = .75            */
-.header__brand { --wordmark: 66px; }
+/* --wordmark: alto de la marca visible del logo principal.
+   --secundario: que fraccion de esa altura miden las marcas de al lado.
+   Se ajustan juntos en cada breakpoint (mas abajo). */
+.header__brand { --wordmark: 66px; --secundario: .50; }
 .brandstrip { display: flex; align-items: center; gap: 24px; }
 .brandstrip__logo {
   position: relative;
@@ -165,9 +168,9 @@ img { max-width: 100%; display: block; }
   align-items: center;
   transition: transform .2s, opacity .2s;
 }
-/* Las marcas secundarias van al 62% de la principal: se leen, pero no compiten. */
+/* Las secundarias se leen, pero el logo principal manda con claridad. */
 .brandstrip__logo img {
-  height: calc(var(--wordmark) * .62 / var(--marca, .5));
+  height: calc(var(--wordmark) * var(--secundario) / var(--marca, .5));
   width: auto;
   display: block;
   object-fit: contain;
@@ -896,7 +899,7 @@ img { max-width: 100%; display: block; }
   .detail { grid-template-columns: 1fr; gap: 30px; }
   .trust__inner { grid-template-columns: repeat(2, 1fr); }
   .footer__inner { grid-template-columns: 1fr; }
-  .header__brand { gap: 16px; --wordmark: 36px; }
+  .header__brand { gap: 16px; --wordmark: 40px; --secundario: .52; }
   .logo img { height: 72px; }
   .brandstrip { gap: 22px; }
 }
@@ -907,8 +910,7 @@ img { max-width: 100%; display: block; }
   /* En mobile el header se pega al borde y las marcas suben al 78% de la
      principal, para que se sigan leyendo sus nombres en pantalla chica. */
   .header__inner { padding-inline: 12px; }
-  .header__brand { gap: 14px; --wordmark: 30px; }
-  .brandstrip__logo img { height: calc(var(--wordmark) * .78 / var(--marca, .5)); }
+  .header__brand { gap: 14px; --wordmark: 36px; --secundario: .58; }
   .brandstrip { gap: 14px; }
   .brandstrip__soon { display: none; }
   .nav {
@@ -945,7 +947,7 @@ img { max-width: 100%; display: block; }
   .section { padding-block: 60px; }
   .logo img { height: 46px; }
   .header__inner { padding-inline: 8px; }
-  .header__brand { gap: 10px; --wordmark: 26px; }
+  .header__brand { gap: 10px; --wordmark: 32px; --secundario: .62; }
   .brandstrip { gap: 10px; }
   .brandbar { gap: 8px; }
   .brandbar__chip { padding: 7px 14px; font-size: .84rem; }
@@ -956,7 +958,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 360px) {
   .logo img { height: 40px; }
   .header__inner { padding-inline: 6px; }
-  .header__brand { --wordmark: 22px; }
+  .header__brand { --wordmark: 28px; --secundario: .65; }
   .brandstrip { gap: 8px; }
 }
 
