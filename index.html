@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="GRADIN — Tienda de maquinaria en Uruguay. Venta y alquiler de plataformas elevadoras, tijeras, brazos articulados y montacargas. Canelones / Toledo." />
+  <meta name="theme-color" content="#0b2a5b" />
   <title>GRADIN · Maquinaria · Venta y Alquiler</title>
 
-  <!-- ⚠️ REEMPLAZAR https://www.gradin.com.uy por el dominio real cuando esté definido (también en robots.txt, sitemap.xml y producto.js) -->
-  <link rel="canonical" href="https://www.gradin.com.uy/" />
+  <link rel="canonical" href="https://www.gradinuruguay.com.uy/" />
 
   <!-- Favicon -->
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
@@ -16,7 +16,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- TODO(seguridad): agregar integrity="sha384-..." + crossorigin="anonymous" a este <link>.
+       Hash: curl -s https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css | openssl dgst -sha384 -binary | openssl base64 -A -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="styles.css" />
 
@@ -27,8 +30,8 @@
     "@type": "Store",
     "name": "GRADIN",
     "description": "Venta y alquiler de maquinaria en Uruguay: plataformas elevadoras, tijeras, brazos articulados y montacargas.",
-    "image": "https://www.gradin.com.uy/assets/logo-diamanto.png",
-    "url": "https://www.gradin.com.uy/",
+    "image": "https://www.gradinuruguay.com.uy/assets/logo-diamanto.png",
+    "url": "https://www.gradinuruguay.com.uy/",
     "telephone": "+59897150208",
     "priceRange": "$$",
     "currenciesAccepted": "UYU, USD",
@@ -69,6 +72,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#inicio">Saltar al contenido</a>
+
   <!-- ===== Top bar ===== -->
   <div class="topbar">
     <div class="container topbar__inner">
@@ -85,7 +90,7 @@
     <div class="container header__inner">
       <div class="header__brand">
         <a href="#inicio" class="logo">
-          <img src="./assets/logo-diamanto.png" alt="DIAMANTO Maquinaria">
+          <img src="./assets/logo-diamanto.png" alt="DIAMANTO Maquinaria" width="600" height="400" fetchpriority="high">
         </a>
         <div class="brandstrip" id="brandStrip"><!-- JS render (marcas) --></div>
       </div>
@@ -98,11 +103,13 @@
         <a href="https://wa.me/59897150208" target="_blank" rel="noopener" class="btn btn--sm btn--primary nav__cta">Cotizar</a>
       </nav>
 
-      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
+
+  <main>
 
   <!-- ===== Hero ===== -->
   <section class="hero" id="inicio">
@@ -124,10 +131,14 @@
       </div>
 
       <div class="hero__card">
-        <a class="pcard pcard--link pcard--featured" href="producto.html?id=manual-9m">
+        <!-- El HTML de abajo es el contenido que ven los buscadores; script.js
+             resincroniza precio, cuota y specs desde PRODUCTS al cargar, para que
+             no puedan quedar desfasados del catálogo. Para cambiar el equipo
+             destacado, editá data-product con el id del producto. -->
+        <a class="pcard pcard--link pcard--featured" id="heroCard" data-product="manual-9m" href="maquinaria/plataforma-manual-11m/">
           <span class="pcard__badge"><i class="bi bi-star-fill"></i> Destacado</span>
           <div class="pcard__img pcard__img--photo">
-            <img src="assets/productos/manual-9m-1.jpg" alt="Plataforma Manual 11 m" onerror="this.style.display='none'">
+            <img src="assets/productos/manual-9m-1.jpg" alt="Plataforma Manual 11 m" width="896" height="1181" onerror="this.style.display='none'">
             <i class="bi bi-layers-fill pcard__img-ph"></i>
           </div>
           <h3>Plataforma Manual 11 m</h3>
@@ -176,12 +187,12 @@
         <h2 class="section__title">Nuestra maquinaria</h2>
         <p class="section__desc">Elegí entre compra o alquiler. Todos los equipos con soporte y entrega.</p>
 
-        <div class="toggle" id="modeToggle">
-          <button class="toggle__btn is-active" data-mode="venta">Venta</button>
-          <button class="toggle__btn" data-mode="alquiler">Alquiler</button>
+        <div class="toggle" id="modeToggle" role="group" aria-label="Modalidad: venta o alquiler">
+          <button type="button" class="toggle__btn is-active" data-mode="venta" aria-pressed="true">Venta</button>
+          <button type="button" class="toggle__btn" data-mode="alquiler" aria-pressed="false">Alquiler</button>
         </div>
 
-        <div class="brandbar" id="brandBar"><!-- JS render (filtro por marca) --></div>
+        <div class="brandbar" id="brandBar" role="group" aria-label="Filtrar por marca"><!-- JS render (filtro por marca) --></div>
       </div>
 
       <div class="grid grid--products" id="productGrid"><!-- JS render --></div>
@@ -194,7 +205,7 @@
     <div class="container about">
       <div class="about__media">
         <div class="about__flag"><i class="bi bi-flag-fill"></i></div>
-        <img src="assets/logo-diamanto.png" alt="Logo DIAMANTO" class="about__logo-img">
+        <img src="assets/logo-diamanto.png" alt="Logo DIAMANTO" class="about__logo-img" width="600" height="400" loading="lazy">
       </div>
       <div class="about__text">
         <h2 class="section__title">Maquinaria que trabaja como vos</h2>
@@ -245,23 +256,8 @@
         </div>
         <div class="field">
           <label for="equipo">Equipo de interés</label>
-          <select id="equipo" name="equipo">
-            <optgroup label="GRADIN">
-              <option>Plataforma Unipersonal</option>
-              <option>Plataforma a Batería 11 m</option>
-              <option>Plataforma Manual 11 m</option>
-              <option>Plataforma Boom 16 m</option>
-              <option>Montacargas 2.5 T (alquiler)</option>
-              <option>Andamio Eléctrico (próximamente)</option>
-              <option>Plataforma Eléctrica Autopropulsada 10 m (próximamente)</option>
-              <option>Plataforma Eléctrica Fácil Carga 12 m (próximamente)</option>
-            </optgroup>
-            <optgroup label="HSY LIFT">
-              <option>Plataforma Compacta 5.7 m</option>
-              <option>Plataforma Articulada Remolcable 14 m</option>
-            </optgroup>
-            <option>Otro / No estoy seguro</option>
-          </select>
+          <!-- Las opciones las genera script.js a partir de PRODUCTS (fuente única). -->
+          <select id="equipo" name="equipo"></select>
         </div>
         <div class="field">
           <label for="mensaje">Mensaje</label>
@@ -273,11 +269,13 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ===== Footer ===== -->
   <footer class="footer">
     <div class="container footer__inner">
       <div>
-        <a href="#inicio" class="logo logo--footer"><img src="assets/logo-diamanto.png" alt="DIAMANTO Maquinaria" style="height:90px;width:auto;"></a>
+        <a href="#inicio" class="logo logo--footer"><img src="assets/logo-diamanto.png" alt="DIAMANTO Maquinaria" width="600" height="400" loading="lazy" style="height:90px;width:auto;"></a>
         <p class="footer__tag">Tienda de maquinaria · Venta y alquiler</p>
       </div>
       <div class="footer__cols">
@@ -302,7 +300,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <div class="container">© <span id="year"></span> GRADIN · Demo. Todos los derechos reservados.</div>
+      <div class="container">© <span id="year"></span> GRADIN. Todos los derechos reservados.</div>
     </div>
   </footer>
 

@@ -1,7 +1,6 @@
 # robots.txt — GRADIN
-# ⚠️ REEMPLAZAR https://www.gradin.com.uy por el dominio real cuando esté definido.
 
 User-agent: *
 Allow: /
 
-Sitemap: https://www.gradin.com.uy/sitemap.xml
+Sitemap: https://www.gradinuruguay.com.uy/sitemap.xml

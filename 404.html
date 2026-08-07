@@ -3,17 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Detalle de maquinaria GRADIN — fotos, especificaciones y consulta por WhatsApp." />
-  <!-- Redirector de enlaces viejos ?id=; build.mjs quita este noindex
-       en las fichas que genera a partir de esta plantilla. -->
+  <meta name="description" content="La página que buscás no existe. Volvé al catálogo de maquinaria de GRADIN." />
   <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#0b2a5b" />
-  <title>GRADIN · Detalle de maquinaria</title>
+  <title>GRADIN · Página no encontrada</title>
 
-  <!-- El canonical, el title, la meta description y el JSON-LD Product
-       los setea producto.js según el ?id= del equipo -->
-
-  <!-- Favicon -->
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="assets/favicon.png" sizes="64x64" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
@@ -22,14 +16,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <!-- TODO(seguridad): agregar integrity="sha384-..." + crossorigin="anonymous" a este <link>.
-       Hash: curl -s https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css | openssl dgst -sha384 -binary | openssl base64 -A -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-  <a class="skip-link" href="#detalle">Saltar al contenido</a>
 
   <!-- ===== Top bar ===== -->
   <div class="topbar">
@@ -42,30 +32,33 @@
     </div>
   </div>
 
-  <!-- ===== Header / Nav ===== -->
+  <!-- ===== Header ===== -->
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="./#inicio" class="logo">
-        <img src="./assets/logodiamanta.jpeg" alt="DIAMANTO Maquinaria" width="600" height="337" fetchpriority="high">
+        <img src="./assets/logo-diamanto.png" alt="DIAMANTO Maquinaria" width="600" height="400">
       </a>
-      <nav class="nav" id="nav">
+      <nav class="nav">
         <a href="./#inicio" class="nav__link">Inicio</a>
         <a href="./#productos" class="nav__link">Maquinaria</a>
         <a href="./#nosotros" class="nav__link">Nosotros</a>
         <a href="./#contacto" class="nav__link">Contacto</a>
-        <a href="https://wa.me/59897150208" target="_blank" rel="noopener" class="btn btn--sm btn--primary nav__cta">Cotizar</a>
       </nav>
-      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </header>
 
-  <!-- ===== Detalle del producto ===== -->
-  <main class="section" id="detalle">
+  <main class="section">
     <div class="container">
-      <a href="./#productos" class="detail__back"><i class="bi bi-arrow-left"></i> Volver a la maquinaria</a>
-      <div class="detail" id="detail"><!-- JS render --></div>
+      <div class="detail__empty">
+        <i class="bi bi-compass"></i>
+        <h1>Esta página no existe</h1>
+        <p>Puede que el enlace esté viejo o mal escrito. Te dejamos por dónde seguir.</p>
+        <div class="detail__actions" style="max-width:340px;margin:0 auto;">
+          <a class="btn btn--primary btn--block" href="./#productos">Ver toda la maquinaria</a>
+          <a class="btn btn--accent btn--block" href="https://wa.me/59897150208" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> Consultar por WhatsApp</a>
+          <a class="btn btn--ghost-dark btn--block" href="./">Ir al inicio</a>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -82,6 +75,7 @@
           <a href="./#productos">Plataformas</a>
           <a href="./#productos">Tijeras</a>
           <a href="./#productos">Brazos articulados</a>
+          <a href="./#productos">Montacargas</a>
         </div>
         <div>
           <h4>Empresa</h4>
@@ -103,7 +97,6 @@
 
   <a href="https://wa.me/59897150208" target="_blank" rel="noopener" class="fab" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
 
-  <script src="products.js"></script>
-  <script src="producto.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

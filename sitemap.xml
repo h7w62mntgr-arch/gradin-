@@ -1,58 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ⚠️ REEMPLAZAR https://www.gradin.com.uy por el dominio real cuando esté definido. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.gradin.com.uy/</loc>
+    <loc>https://www.gradinuruguay.com.uy/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.gradin.com.uy/producto.html?id=unipersonal</loc>
+    <loc>https://www.gradinuruguay.com.uy/maquinaria/plataforma-unipersonal/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.gradin.com.uy/producto.html?id=bateria-9m</loc>
+    <loc>https://www.gradinuruguay.com.uy/maquinaria/plataforma-bateria-11m/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.gradin.com.uy/producto.html?id=manual-9m</loc>
+    <loc>https://www.gradinuruguay.com.uy/maquinaria/plataforma-manual-11m/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.gradin.com.uy/producto.html?id=boom-16m</loc>
+    <loc>https://www.gradinuruguay.com.uy/maquinaria/plataforma-boom-16m/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.gradin.com.uy/producto.html?id=montacargas</loc>
+    <loc>https://www.gradinuruguay.com.uy/maquinaria/montacargas-2-5t/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.gradin.com.uy/producto.html?id=andamio-electrico</loc>
+    <loc>https://www.gradinuruguay.com.uy/maquinaria/andamio-electrico/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.gradin.com.uy/producto.html?id=autopropulsada-10m</loc>
+    <loc>https://www.gradinuruguay.com.uy/maquinaria/plataforma-electrica-autopropulsada-10m/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.gradin.com.uy/producto.html?id=facilcarga-12m</loc>
+    <loc>https://www.gradinuruguay.com.uy/maquinaria/plataforma-electrica-facil-carga-12m/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.gradin.com.uy/producto.html?id=hsylift-compacta</loc>
+    <loc>https://www.gradinuruguay.com.uy/maquinaria/plataforma-compacta-5-7m/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.gradin.com.uy/producto.html?id=hsylift-articulada</loc>
+    <loc>https://www.gradinuruguay.com.uy/maquinaria/plataforma-articulada-remolcable-14m/</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

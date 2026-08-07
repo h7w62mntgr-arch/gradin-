@@ -1,0 +1,21 @@
+name: Fichas al día
+
+# Las fichas de maquinaria/ se generan desde products.js con `node build.mjs`.
+# Si alguien edita el catálogo y se olvida de regenerarlas, quedan publicados
+# precios viejos. Este chequeo falla cuando eso pasa.
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verificar que las fichas coinciden con products.js
+        run: node build.mjs --check
