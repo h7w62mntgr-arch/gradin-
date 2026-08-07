@@ -18,7 +18,7 @@ if (product) {
       <i class="bi bi-exclamation-triangle"></i>
       <h1>Producto no encontrado</h1>
       <p>El equipo que buscás no está disponible.</p>
-      <a class="btn btn--primary" href="index.html#productos">Ver toda la maquinaria</a>
+      <a class="btn btn--primary" href="./#productos">Ver toda la maquinaria</a>
     </div>`;
 
   /* ===== Menú móvil ===== */

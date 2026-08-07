@@ -50,7 +50,11 @@ function reescribirRutas(html) {
   return html
     .replace(/(href|src)="\.\/(assets\/)/g, `$1="${SUBIR}$2`)
     .replace(/(href|src)="(assets\/|styles\.css|products\.js|producto\.js|ficha\.js)/g, `$1="${SUBIR}$2`)
-    .replace(/href="index\.html/g, `href="${SUBIR}index.html`);
+    /* Se enlaza al directorio y no a index.html: si el host reescribe URLs
+       limpias, /gradin-/index.html queda como /gradin- (sin barra final) y las
+       rutas relativas pasan a resolverse contra la raíz. */
+    .replace(/(href|src)="\.\/#/g, `$1="${SUBIR}#`)
+    .replace(/href="\.\/"/g, `href="${SUBIR}"`);
 }
 
 function bloqueDetalle(p, IMAGE_DIMS) {
@@ -158,7 +162,7 @@ ${priceBlock}${rentBlock}
           <a class="btn btn--accent btn--block" href="https://wa.me/${WHATSAPP_NUMBER}?text=${waText}" target="_blank" rel="noopener">
             <i class="bi bi-whatsapp"></i> ${ctaLabel}
           </a>
-          <a class="btn btn--ghost-dark btn--block" href="${SUBIR}index.html#productos">Ver otros equipos</a>
+          <a class="btn btn--ghost-dark btn--block" href="${SUBIR}#productos">Ver otros equipos</a>
         </div>
       </div>`;
 
