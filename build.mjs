@@ -14,9 +14,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
 
-const RAIZ = path.dirname(new URL(import.meta.url).pathname);
-const SITE_ORIGIN = 'https://www.gradinuruguay.com.uy';
+/* fileURLToPath y no new URL().pathname: en Windows eso devuelve "/C:/Users/..."
+   con la barra de más y termina armando rutas tipo "C:\C:\Users\...". */
+const RAIZ = path.dirname(fileURLToPath(import.meta.url));
+const SITE_ORIGIN = 'https://gradinuruguay.com.uy';
 const SOLO_VERIFICAR = process.argv.includes('--check');
 
 /* products.js es JS plano sin exports: se evalúa en un sandbox y se leen
@@ -199,7 +202,27 @@ ${priceBlock}${rentBlock}
     ],
   };
 
+  /* ----- Open Graph -----
+     Es lo único que leen WhatsApp, Facebook y LinkedIn para armar el preview
+     del link: no ejecutan JS, así que tiene que estar resuelto en el HTML.
+     Va la foto del equipo, no la imagen genérica, para que al compartir una
+     ficha se vea la máquina. Sin width/height: no son 1200×630 y cada
+     plataforma las mide sola. */
+  const ogDesc = escapar(recortar(p.desc, 200));
+  const ogImagen = `${SITE_ORIGIN}/${p.images[0]}`;
+  const og = `  <meta property="og:type" content="product" />
+  <meta property="og:site_name" content="GRADIN" />
+  <meta property="og:locale" content="es_UY" />
+  <meta property="og:url" content="${url}" />
+  <meta property="og:title" content="GRADIN · ${escapar(p.name)}" />
+  <meta property="og:description" content="${ogDesc}" />
+  <meta property="og:image" content="${ogImagen}" />
+  <meta property="og:image:alt" content="${escapar(p.name)}" />
+  <meta name="twitter:card" content="summary_large_image" />`;
+
   const cabeza = `  <link rel="canonical" href="${url}" />
+
+${og}
 
   <script type="application/ld+json">
 ${JSON.stringify(producto, null, 2)}
@@ -212,7 +235,7 @@ ${JSON.stringify(migas, null, 2)}
     .replace('<title>GRADIN · Detalle de maquinaria</title>', `<title>GRADIN · ${escapar(p.name)}</title>`)
     .replace(/<meta name="description" content="[^"]*" \/>/,
       `<meta name="description" content="${escapar(recortar(p.desc))}" />`)
-    .replace(/  <!-- El canonical[\s\S]*?los setea producto\.js según el \?id= del equipo -->/, cabeza)
+    .replace(/  <!-- El canonical[\s\S]*?<!-- fin cabecera dinámica -->/, cabeza)
     .replace('<div class="detail" id="detail"><!-- JS render --></div>',
       `<div class="detail" id="detail" data-product="${p.id}">${detalle}\n      </div>`)
     /* La ficha generada no necesita el catálogo: ficha.js lee las fotos del
@@ -236,8 +259,15 @@ ${PRODUCTS.map((p) => url(`${SITE_ORIGIN}/maquinaria/${p.slug}/`, p.soon ? '0.6'
 }
 
 /* ===== Main ===== */
+/* Todo se normaliza a LF antes de tocarlo. En Windows git hace checkout con
+   CRLF, y las expresiones de generarFicha() buscan "\n": sin esto no matchean
+   y se cuelan en la ficha cosas que había que sacar (el noindex del
+   redirector, el <script> de products.js). Además garantiza que el archivo
+   generado sea byte a byte igual en Windows y en el CI, que corre --check. */
+const aLF = (s) => s.replace(/\r\n/g, '\n');
+
 const datos = leerCatalogo();
-const template = fs.readFileSync(path.join(RAIZ, 'producto.html'), 'utf8');
+const template = aLF(fs.readFileSync(path.join(RAIZ, 'producto.html'), 'utf8'));
 const salidas = new Map();
 
 for (const p of datos.PRODUCTS) {
@@ -249,7 +279,7 @@ salidas.set('sitemap.xml', generarSitemap(datos.PRODUCTS));
 let desactualizados = 0;
 for (const [rel, contenido] of salidas) {
   const abs = path.join(RAIZ, rel);
-  const actual = fs.existsSync(abs) ? fs.readFileSync(abs, 'utf8') : null;
+  const actual = fs.existsSync(abs) ? aLF(fs.readFileSync(abs, 'utf8')) : null;
   if (actual === contenido) continue;
   desactualizados++;
   if (SOLO_VERIFICAR) {

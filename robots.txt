@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.gradinuruguay.com.uy/sitemap.xml
+Sitemap: https://gradinuruguay.com.uy/sitemap.xml

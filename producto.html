@@ -10,8 +10,21 @@
   <meta name="theme-color" content="#0b2a5b" />
   <title>GRADIN · Detalle de maquinaria</title>
 
-  <!-- El canonical, el title, la meta description y el JSON-LD Product
-       los setea producto.js según el ?id= del equipo -->
+  <!-- El canonical, el title, la meta description, el JSON-LD Product y las
+       etiquetas Open Graph los reemplaza build.mjs por los de cada equipo al
+       generar las fichas. Lo de abajo es el valor por defecto del redirector.
+       Todo el bloque, hasta el cierre, se sustituye de una sola vez. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GRADIN" />
+  <meta property="og:locale" content="es_UY" />
+  <meta property="og:url" content="https://gradinuruguay.com.uy/" />
+  <meta property="og:title" content="GRADIN · Venta y alquiler de maquinaria en Uruguay" />
+  <meta property="og:description" content="Plataformas elevadoras, tijeras, brazos articulados y montacargas. Financiación propia hasta en 18 cuotas." />
+  <meta property="og:image" content="https://gradinuruguay.com.uy/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- fin cabecera dinámica -->
 
   <!-- Favicon -->
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
