@@ -39,9 +39,9 @@ const PRODUCTS = [
       ['bi-patch-check-fill', 'Garantía', '6 meses por escrito'],
     ],
     images: [
-      'assets/productos/unipersonal-1.jpg',
-      'assets/productos/unipersonal-2.jpg',
-      'assets/productos/unipersonal-3.jpg',
+      'assets/productos/unipersonal-1.webp',
+      'assets/productos/unipersonal-2.webp',
+      'assets/productos/unipersonal-3.webp',
     ],
   },
   {
@@ -75,8 +75,8 @@ const PRODUCTS = [
       ['bi-patch-check-fill', 'Garantía', '6 meses por escrito'],
     ],
     images: [
-      'assets/productos/bateria-9m-1.jpg',
-      'assets/productos/bateria-9m-2.jpg',
+      'assets/productos/bateria-9m-1.webp',
+      'assets/productos/bateria-9m-2.webp',
     ],
   },
   {
@@ -109,8 +109,8 @@ const PRODUCTS = [
       ['bi-patch-check-fill', 'Garantía', '6 meses por escrito'],
     ],
     images: [
-      'assets/productos/manual-9m-1.jpg',
-      'assets/productos/manual-9m-2.jpg',
+      'assets/productos/manual-9m-1.webp',
+      'assets/productos/manual-9m-2.webp',
     ],
   },
   {
@@ -144,9 +144,9 @@ const PRODUCTS = [
       ['bi-patch-check-fill', 'Garantía', '6 meses por escrito'],
     ],
     images: [
-      'assets/productos/boom-16m-1.jpg',
-      'assets/productos/boom-16m-2.jpg',
-      'assets/productos/boom-16m-3.jpg',
+      'assets/productos/boom-16m-1.webp',
+      'assets/productos/boom-16m-2.webp',
+      'assets/productos/boom-16m-3.webp',
     ],
   },
   {
@@ -170,8 +170,8 @@ const PRODUCTS = [
       ['bi-patch-check-fill', 'Modalidad', 'Alquiler por día o semana'],
     ],
     images: [
-      'assets/productos/montacargas-1.jpg',
-      'assets/productos/montacargas-2.jpg',
+      'assets/productos/montacargas-1.webp',
+      'assets/productos/montacargas-2.webp',
     ],
   },
 
@@ -198,7 +198,7 @@ const PRODUCTS = [
       ['bi-rulers', 'Dimensiones externas', '1800 × 900 × 2230 mm'],
     ],
     images: [
-      'assets/andamio-azul.jpeg',
+      'assets/andamio-azul.webp',
     ],
   },
   {
@@ -226,7 +226,7 @@ const PRODUCTS = [
       ['bi-rulers', 'Dim. ext. (barandilla desplegada)', '2.43 × 1.21 × 2.35 m'],
     ],
     images: [
-      'assets/plataforma-electrica-autopropulsada.jpeg',
+      'assets/plataforma-electrica-autopropulsada.webp',
     ],
   },
   {
@@ -251,8 +251,8 @@ const PRODUCTS = [
       ['bi-box-seam-fill', 'Característica', 'Fácil carga'],
     ],
     images: [
-      'assets/plataforma-facilcarga-12m.jpeg',
-      'assets/plataforma-facilcarga-12m-2.jpeg',
+      'assets/plataforma-facilcarga-12m.webp',
+      'assets/plataforma-facilcarga-12m-2.webp',
     ],
   },
 
@@ -282,8 +282,8 @@ const PRODUCTS = [
       ['bi-battery-charging', 'Batería / Cargador', '12 V 66 Ah / 12 V 65 Ah'],
     ],
     images: [
-      'assets/plataforma-nopixeleada.jpeg',
-      'assets/ficha-tijera-5,7m.jpeg',
+      'assets/plataforma-nopixeleada.webp',
+      'assets/ficha-tijera-5,7m.webp',
     ],
   },
   {
@@ -293,7 +293,7 @@ const PRODUCTS = [
     name: 'Plataforma Articulada Remolcable 14 m',
     tag: 'HSY LIFT',
     icon: 'bi-bezier2',
-    precio: '24.300',
+    precio: '21.990',
     desc: 'Plataforma articulada remolcable con brazo de gran alcance y rotación de 360°. Motor Honda a nafta, estabilizadores y desplazamiento por remolque. Ideal para mantenimiento, instalaciones eléctricas, poda y trabajos en altura en exteriores.',
     cardSpecs: [
       ['bi-arrows-expand', '14 m'],
@@ -310,8 +310,8 @@ const PRODUCTS = [
       ['bi-fuel-pump-fill', 'Motor', 'Honda GX630 · Nafta'],
     ],
     images: [
-      'assets/articulada-hsylift.jpeg',
-      'assets/ficha-tecncicaarticulada.jpeg',
+      'assets/articulada-hsylift.webp',
+      'assets/ficha-tecncicaarticulada.webp',
     ],
   },
 ];
@@ -321,29 +321,29 @@ const PRODUCTS = [
    el espacio antes de descargar la imagen y no salte el layout (CLS).
    Si agregás una foto nueva, sumá acá sus medidas.               */
 const IMAGE_DIMS = {
-  'assets/andamio-azul.jpeg': [752, 1382],
-  'assets/articulada-hsylift.jpeg': [1288, 1221],
-  'assets/ficha-tecncicaarticulada.jpeg': [1009, 1400],
-  'assets/ficha-tijera-5,7m.jpeg': [1149, 1400],
-  'assets/gradin.png': [600, 194],
-  'assets/logo-hsylift.png': [288, 288],
-  'assets/logo-titan.png': [270, 360],
-  'assets/plataforma-electrica-autopropulsada.jpeg': [1050, 1400],
-  'assets/plataforma-facilcarga-12m-2.jpeg': [1050, 1400],
-  'assets/plataforma-facilcarga-12m.jpeg': [1050, 1400],
-  'assets/plataforma-nopixeleada.jpeg': [991, 1400],
-  'assets/productos/bateria-9m-1.jpg': [965, 1400],
-  'assets/productos/bateria-9m-2.jpg': [1086, 1400],
-  'assets/productos/boom-16m-1.jpg': [1142, 1377],
-  'assets/productos/boom-16m-2.jpg': [1112, 1400],
-  'assets/productos/boom-16m-3.jpg': [1179, 1475],
-  'assets/productos/manual-9m-1.jpg': [896, 1181],
-  'assets/productos/manual-9m-2.jpg': [647, 1400],
-  'assets/productos/montacargas-1.jpg': [1179, 1240],
-  'assets/productos/montacargas-2.jpg': [1050, 1400],
-  'assets/productos/unipersonal-1.jpg': [1265, 1243],
-  'assets/productos/unipersonal-2.jpg': [928, 1144],
-  'assets/productos/unipersonal-3.jpg': [1008, 1063],
+  'assets/andamio-azul.webp': [752, 1382],
+  'assets/articulada-hsylift.webp': [1288, 1221],
+  'assets/ficha-tecncicaarticulada.webp': [1009, 1400],
+  'assets/ficha-tijera-5,7m.webp': [1149, 1400],
+  'assets/gradin.webp': [200, 65],
+  'assets/logo-hsylift.webp': [140, 140],
+  'assets/logo-titan.webp': [140, 187],
+  'assets/plataforma-electrica-autopropulsada.webp': [1050, 1400],
+  'assets/plataforma-facilcarga-12m-2.webp': [1050, 1400],
+  'assets/plataforma-facilcarga-12m.webp': [1050, 1400],
+  'assets/plataforma-nopixeleada.webp': [991, 1400],
+  'assets/productos/bateria-9m-1.webp': [965, 1400],
+  'assets/productos/bateria-9m-2.webp': [1086, 1400],
+  'assets/productos/boom-16m-1.webp': [1142, 1377],
+  'assets/productos/boom-16m-2.webp': [1112, 1400],
+  'assets/productos/boom-16m-3.webp': [1179, 1475],
+  'assets/productos/manual-9m-1.webp': [896, 1181],
+  'assets/productos/manual-9m-2.webp': [647, 1400],
+  'assets/productos/montacargas-1.webp': [1179, 1240],
+  'assets/productos/montacargas-2.webp': [1050, 1400],
+  'assets/productos/unipersonal-1.webp': [1265, 1243],
+  'assets/productos/unipersonal-2.webp': [928, 1144],
+  'assets/productos/unipersonal-3.webp': [1008, 1063],
 };
 
 /* ===== Marcas (se muestran junto a GRADIN; cada logo filtra sus equipos) =====
@@ -351,9 +351,9 @@ const IMAGE_DIMS = {
    w/h: dimensiones reales del archivo, para que el navegador reserve el
    espacio del logo antes de descargarlo (evita saltos de layout / CLS).   */
 const BRANDS = [
-  { id: 'gradin',  name: 'GRADIN',   logo: 'assets/gradin.png',       w: 600,  h: 194 },
-  { id: 'titan',   name: 'TITAN',    logo: 'assets/logo-titan.png',   w: 270,  h: 360 },
-  { id: 'hsylift', name: 'HSY LIFT', logo: 'assets/logo-hsylift.png', w: 288, h: 288 },
+  { id: 'gradin',  name: 'GRADIN',   logo: 'assets/gradin.webp',       w: 200,  h: 65 },
+  { id: 'titan',   name: 'TITAN',    logo: 'assets/logo-titan.webp',   w: 140,  h: 187 },
+  { id: 'hsylift', name: 'HSY LIFT', logo: 'assets/logo-hsylift.webp', w: 140, h: 140 },
 ];
 
 const WHATSAPP_NUMBER = '59897150208';

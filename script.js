@@ -20,17 +20,36 @@ brandStrip.innerHTML = BRANDS.map(b => `
    alternando; en desktop el CSS los muestra todos y esto no se nota.
    No se frena con prefers-reduced-motion a propósito: ahí el sitio ya anula
    la transición, así que el cambio pasa a ser instantáneo en vez de fundido.
-   Cortar la rotación dejaría dos de las tres marcas invisibles en celular. */
+   Cortar la rotación dejaría dos de las tres marcas invisibles en celular.
+
+   Arranca recién después de 'load' porque en mobile cada cambio dispara un
+   fundido de .6s en el header (ver .brandstrip__logo en la media query de
+   760px). Mientras la página carga eso la mantiene repintando sin parar y
+   Lighthouse no logra cerrar la medición: da NO_LCP, y con él se caen TBT y
+   las auditorías que dependen de esa ventana. En desktop no pasaba porque
+   ahí los logos se ven los tres juntos y togglear la clase no repinta nada.
+
+   El primer logo se marca activo de entrada, así que hasta que arranca la
+   rotación el header ya se ve como corresponde. */
 (function rotateBrandStrip() {
   const logos = brandStrip.querySelectorAll('.brandstrip__logo');
   if (logos.length < 2) return;
   let i = 0;
   logos[0].classList.add('is-active');
-  setInterval(() => {
-    logos[i].classList.remove('is-active');
-    i = (i + 1) % logos.length;
-    logos[i].classList.add('is-active');
-  }, 3000);
+
+  function arrancar() {
+    setInterval(() => {
+      /* Con la pestaña en segundo plano no se repinta al pedo: se saltea el
+         turno y el próximo tick sigue donde estaba. */
+      if (document.visibilityState !== 'visible') return;
+      logos[i].classList.remove('is-active');
+      i = (i + 1) % logos.length;
+      logos[i].classList.add('is-active');
+    }, 3000);
+  }
+
+  if (document.readyState === 'complete') arrancar();
+  else window.addEventListener('load', arrancar, { once: true });
 })();
 
 /* ----- Barra de filtro por marca (solo en modo Venta) ----- */

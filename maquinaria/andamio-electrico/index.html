@@ -15,7 +15,7 @@
   <meta property="og:url" content="https://gradinuruguay.com.uy/maquinaria/andamio-electrico/" />
   <meta property="og:title" content="GRADIN · Andamio Eléctrico" />
   <meta property="og:description" content="Andamio eléctrico de elevación vertical, compacto y fácil de trasladar. Ideal para tareas de mantenimiento, pintura e instalación en altura dentro de espacios reducidos. Próximo ingreso: ya podés…" />
-  <meta property="og:image" content="https://gradinuruguay.com.uy/assets/andamio-azul.jpeg" />
+  <meta property="og:image" content="https://gradinuruguay.com.uy/assets/andamio-azul.webp" />
   <meta property="og:image:alt" content="Andamio Eléctrico" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -27,7 +27,7 @@
   "description": "Andamio eléctrico de elevación vertical, compacto y fácil de trasladar. Ideal para tareas de mantenimiento, pintura e instalación en altura dentro de espacios reducidos. Próximo ingreso: ya podés reservar tu unidad.",
   "sku": "andamio-electrico",
   "image": [
-    "https://gradinuruguay.com.uy/assets/andamio-azul.jpeg"
+    "https://gradinuruguay.com.uy/assets/andamio-azul.webp"
   ],
   "brand": {
     "@type": "Brand",
@@ -105,13 +105,13 @@
   <link rel="icon" type="image/png" href="../../assets/favicon.png" sizes="64x64" />
   <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <!-- TODO(seguridad): agregar integrity="sha384-..." + crossorigin="anonymous" a este <link>.
-       Hash: curl -s https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css | openssl dgst -sha384 -binary | openssl base64 -A -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <!-- Inter y los íconos ahora son archivos propios, declarados con @font-face
+       arriba de styles.css. Al no haber hojas de estilo de terceros el navegador
+       no tiene que abrir conexión a otros hosts antes de pintar, y de paso se
+       cae el TODO de integrity que pedía el <link> a la CDN.
+       El preload adelanta la fuente, que si no se pide recién cuando el
+       navegador terminó de parsear styles.css. -->
+  <link rel="preload" href="../../assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../styles.css" />
 </head>
 <body>
@@ -155,7 +155,7 @@
       <div class="detail" id="detail" data-product="andamio-electrico">
       <div class="detail__gallery">
         <div class="gallery__main" id="galMain">
-          <img id="galImg" src="../../assets/andamio-azul.jpeg" alt="Andamio Eléctrico" width="752" height="1382" fetchpriority="high"
+          <img id="galImg" src="../../assets/andamio-azul.webp" alt="Andamio Eléctrico" width="752" height="1382" fetchpriority="high"
                tabindex="0" role="button" aria-label="Ampliar imagen de Andamio Eléctrico">
           <div class="gallery__ph"><i class="bi bi-building-up"></i><span>Foto próximamente</span></div>
           <button type="button" class="gallery__nav gallery__nav--prev" id="galPrev" aria-label="Foto anterior"><i class="bi bi-chevron-left"></i></button>
@@ -163,7 +163,7 @@
         </div>
         <div class="gallery__thumbs">
         <button type="button" class="gallery__thumb is-active" data-index="0" aria-label="Ver foto 1 de 1" aria-pressed="true">
-          <img src="../../assets/andamio-azul.jpeg" alt="Andamio Eléctrico — foto 1" width="752" height="1382" loading="lazy" decoding="async" onerror="this.style.display='none'">
+          <img src="../../assets/andamio-azul.webp" alt="Andamio Eléctrico — foto 1" width="752" height="1382" loading="lazy" decoding="async" onerror="this.style.display='none'">
           <i class="bi bi-building-up"></i>
         </button>
         </div>
@@ -224,7 +224,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div>
-        <a href="../../#inicio" class="logo logo--footer"><img src="../../assets/logo-diamanto.png" alt="DIAMANTO Maquinaria" width="600" height="400" loading="lazy" style="height:90px;width:auto;"></a>
+        <a href="../../#inicio" class="logo logo--footer"><img src="../../assets/logo-diamanto.webp" alt="DIAMANTO Maquinaria" width="260" height="173" loading="lazy" style="height:90px;width:auto;"></a>
         <p class="footer__tag">Tienda de maquinaria · Venta y alquiler</p>
       </div>
       <div class="footer__cols">

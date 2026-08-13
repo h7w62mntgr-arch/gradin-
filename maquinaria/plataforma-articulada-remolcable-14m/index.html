@@ -15,7 +15,7 @@
   <meta property="og:url" content="https://gradinuruguay.com.uy/maquinaria/plataforma-articulada-remolcable-14m/" />
   <meta property="og:title" content="GRADIN · Plataforma Articulada Remolcable 14 m" />
   <meta property="og:description" content="Plataforma articulada remolcable con brazo de gran alcance y rotación de 360°. Motor Honda a nafta, estabilizadores y desplazamiento por remolque. Ideal para mantenimiento, instalaciones eléctricas…" />
-  <meta property="og:image" content="https://gradinuruguay.com.uy/assets/articulada-hsylift.jpeg" />
+  <meta property="og:image" content="https://gradinuruguay.com.uy/assets/articulada-hsylift.webp" />
   <meta property="og:image:alt" content="Plataforma Articulada Remolcable 14 m" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -27,8 +27,8 @@
   "description": "Plataforma articulada remolcable con brazo de gran alcance y rotación de 360°. Motor Honda a nafta, estabilizadores y desplazamiento por remolque. Ideal para mantenimiento, instalaciones eléctricas, poda y trabajos en altura en exteriores.",
   "sku": "hsylift-articulada",
   "image": [
-    "https://gradinuruguay.com.uy/assets/articulada-hsylift.jpeg",
-    "https://gradinuruguay.com.uy/assets/ficha-tecncicaarticulada.jpeg"
+    "https://gradinuruguay.com.uy/assets/articulada-hsylift.webp",
+    "https://gradinuruguay.com.uy/assets/ficha-tecncicaarticulada.webp"
   ],
   "brand": {
     "@type": "Brand",
@@ -75,7 +75,7 @@
     "@type": "Offer",
     "url": "https://gradinuruguay.com.uy/maquinaria/plataforma-articulada-remolcable-14m/",
     "priceCurrency": "USD",
-    "price": 24300,
+    "price": 21990,
     "availability": "https://schema.org/InStock",
     "seller": {
       "@type": "Organization",
@@ -116,13 +116,13 @@
   <link rel="icon" type="image/png" href="../../assets/favicon.png" sizes="64x64" />
   <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <!-- TODO(seguridad): agregar integrity="sha384-..." + crossorigin="anonymous" a este <link>.
-       Hash: curl -s https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css | openssl dgst -sha384 -binary | openssl base64 -A -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <!-- Inter y los íconos ahora son archivos propios, declarados con @font-face
+       arriba de styles.css. Al no haber hojas de estilo de terceros el navegador
+       no tiene que abrir conexión a otros hosts antes de pintar, y de paso se
+       cae el TODO de integrity que pedía el <link> a la CDN.
+       El preload adelanta la fuente, que si no se pide recién cuando el
+       navegador terminó de parsear styles.css. -->
+  <link rel="preload" href="../../assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../styles.css" />
 </head>
 <body>
@@ -166,7 +166,7 @@
       <div class="detail" id="detail" data-product="hsylift-articulada">
       <div class="detail__gallery">
         <div class="gallery__main" id="galMain">
-          <img id="galImg" src="../../assets/articulada-hsylift.jpeg" alt="Plataforma Articulada Remolcable 14 m" width="1288" height="1221" fetchpriority="high"
+          <img id="galImg" src="../../assets/articulada-hsylift.webp" alt="Plataforma Articulada Remolcable 14 m" width="1288" height="1221" fetchpriority="high"
                tabindex="0" role="button" aria-label="Ampliar imagen de Plataforma Articulada Remolcable 14 m">
           <div class="gallery__ph"><i class="bi bi-bezier2"></i><span>Foto próximamente</span></div>
           <button type="button" class="gallery__nav gallery__nav--prev" id="galPrev" aria-label="Foto anterior"><i class="bi bi-chevron-left"></i></button>
@@ -174,11 +174,11 @@
         </div>
         <div class="gallery__thumbs">
         <button type="button" class="gallery__thumb is-active" data-index="0" aria-label="Ver foto 1 de 2" aria-pressed="true">
-          <img src="../../assets/articulada-hsylift.jpeg" alt="Plataforma Articulada Remolcable 14 m — foto 1" width="1288" height="1221" loading="lazy" decoding="async" onerror="this.style.display='none'">
+          <img src="../../assets/articulada-hsylift.webp" alt="Plataforma Articulada Remolcable 14 m — foto 1" width="1288" height="1221" loading="lazy" decoding="async" onerror="this.style.display='none'">
           <i class="bi bi-bezier2"></i>
         </button>
         <button type="button" class="gallery__thumb " data-index="1" aria-label="Ver foto 2 de 2" aria-pressed="false">
-          <img src="../../assets/ficha-tecncicaarticulada.jpeg" alt="Plataforma Articulada Remolcable 14 m — foto 2" width="1009" height="1400" loading="lazy" decoding="async" onerror="this.style.display='none'">
+          <img src="../../assets/ficha-tecncicaarticulada.webp" alt="Plataforma Articulada Remolcable 14 m — foto 2" width="1009" height="1400" loading="lazy" decoding="async" onerror="this.style.display='none'">
           <i class="bi bi-bezier2"></i>
         </button>
         </div>
@@ -191,7 +191,7 @@
 
         <div class="detail__price">
           <div class="detail__price-row">
-            <span class="detail__price-big">USD 24.300</span>
+            <span class="detail__price-big">USD 21.990</span>
             <small>+ IVA · precio contado</small>
           </div>
         </div>
@@ -241,7 +241,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div>
-        <a href="../../#inicio" class="logo logo--footer"><img src="../../assets/logo-diamanto.png" alt="DIAMANTO Maquinaria" width="600" height="400" loading="lazy" style="height:90px;width:auto;"></a>
+        <a href="../../#inicio" class="logo logo--footer"><img src="../../assets/logo-diamanto.webp" alt="DIAMANTO Maquinaria" width="260" height="173" loading="lazy" style="height:90px;width:auto;"></a>
         <p class="footer__tag">Tienda de maquinaria · Venta y alquiler</p>
       </div>
       <div class="footer__cols">

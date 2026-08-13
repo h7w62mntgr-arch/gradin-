@@ -15,7 +15,7 @@
   <meta property="og:url" content="https://gradinuruguay.com.uy/maquinaria/plataforma-electrica-autopropulsada-10m/" />
   <meta property="og:title" content="GRADIN · Plataforma Eléctrica Autopropulsada 10 m" />
   <meta property="og:description" content="Plataforma de tijera eléctrica autopropulsada de gran altura y capacidad. Se desplaza por sí sola, con amplia jaula de trabajo, pensada para obra e industria. Próximo ingreso: ya podés reservar tu…" />
-  <meta property="og:image" content="https://gradinuruguay.com.uy/assets/plataforma-electrica-autopropulsada.jpeg" />
+  <meta property="og:image" content="https://gradinuruguay.com.uy/assets/plataforma-electrica-autopropulsada.webp" />
   <meta property="og:image:alt" content="Plataforma Eléctrica Autopropulsada 10 m" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -27,7 +27,7 @@
   "description": "Plataforma de tijera eléctrica autopropulsada de gran altura y capacidad. Se desplaza por sí sola, con amplia jaula de trabajo, pensada para obra e industria. Próximo ingreso: ya podés reservar tu unidad.",
   "sku": "autopropulsada-10m",
   "image": [
-    "https://gradinuruguay.com.uy/assets/plataforma-electrica-autopropulsada.jpeg"
+    "https://gradinuruguay.com.uy/assets/plataforma-electrica-autopropulsada.webp"
   ],
   "brand": {
     "@type": "Brand",
@@ -115,13 +115,13 @@
   <link rel="icon" type="image/png" href="../../assets/favicon.png" sizes="64x64" />
   <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <!-- TODO(seguridad): agregar integrity="sha384-..." + crossorigin="anonymous" a este <link>.
-       Hash: curl -s https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css | openssl dgst -sha384 -binary | openssl base64 -A -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <!-- Inter y los íconos ahora son archivos propios, declarados con @font-face
+       arriba de styles.css. Al no haber hojas de estilo de terceros el navegador
+       no tiene que abrir conexión a otros hosts antes de pintar, y de paso se
+       cae el TODO de integrity que pedía el <link> a la CDN.
+       El preload adelanta la fuente, que si no se pide recién cuando el
+       navegador terminó de parsear styles.css. -->
+  <link rel="preload" href="../../assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../styles.css" />
 </head>
 <body>
@@ -165,7 +165,7 @@
       <div class="detail" id="detail" data-product="autopropulsada-10m">
       <div class="detail__gallery">
         <div class="gallery__main" id="galMain">
-          <img id="galImg" src="../../assets/plataforma-electrica-autopropulsada.jpeg" alt="Plataforma Eléctrica Autopropulsada 10 m" width="1050" height="1400" fetchpriority="high"
+          <img id="galImg" src="../../assets/plataforma-electrica-autopropulsada.webp" alt="Plataforma Eléctrica Autopropulsada 10 m" width="1050" height="1400" fetchpriority="high"
                tabindex="0" role="button" aria-label="Ampliar imagen de Plataforma Eléctrica Autopropulsada 10 m">
           <div class="gallery__ph"><i class="bi bi-truck-front"></i><span>Foto próximamente</span></div>
           <button type="button" class="gallery__nav gallery__nav--prev" id="galPrev" aria-label="Foto anterior"><i class="bi bi-chevron-left"></i></button>
@@ -173,7 +173,7 @@
         </div>
         <div class="gallery__thumbs">
         <button type="button" class="gallery__thumb is-active" data-index="0" aria-label="Ver foto 1 de 1" aria-pressed="true">
-          <img src="../../assets/plataforma-electrica-autopropulsada.jpeg" alt="Plataforma Eléctrica Autopropulsada 10 m — foto 1" width="1050" height="1400" loading="lazy" decoding="async" onerror="this.style.display='none'">
+          <img src="../../assets/plataforma-electrica-autopropulsada.webp" alt="Plataforma Eléctrica Autopropulsada 10 m — foto 1" width="1050" height="1400" loading="lazy" decoding="async" onerror="this.style.display='none'">
           <i class="bi bi-truck-front"></i>
         </button>
         </div>
@@ -242,7 +242,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div>
-        <a href="../../#inicio" class="logo logo--footer"><img src="../../assets/logo-diamanto.png" alt="DIAMANTO Maquinaria" width="600" height="400" loading="lazy" style="height:90px;width:auto;"></a>
+        <a href="../../#inicio" class="logo logo--footer"><img src="../../assets/logo-diamanto.webp" alt="DIAMANTO Maquinaria" width="260" height="173" loading="lazy" style="height:90px;width:auto;"></a>
         <p class="footer__tag">Tienda de maquinaria · Venta y alquiler</p>
       </div>
       <div class="footer__cols">
