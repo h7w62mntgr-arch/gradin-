@@ -15,6 +15,24 @@ brandStrip.innerHTML = BRANDS.map(b => `
     ${b.pending ? '<span class="brandstrip__soon">Próximamente</span>' : ''}
   </a>`).join('');
 
+/* ----- Slide rotativo entre marcas (visible en celular, 3s por logo) -----
+   En pantallas chicas los logos se apilan en el mismo lugar y se van
+   alternando; en desktop el CSS los muestra todos y esto no se nota.
+   No se frena con prefers-reduced-motion a propósito: ahí el sitio ya anula
+   la transición, así que el cambio pasa a ser instantáneo en vez de fundido.
+   Cortar la rotación dejaría dos de las tres marcas invisibles en celular. */
+(function rotateBrandStrip() {
+  const logos = brandStrip.querySelectorAll('.brandstrip__logo');
+  if (logos.length < 2) return;
+  let i = 0;
+  logos[0].classList.add('is-active');
+  setInterval(() => {
+    logos[i].classList.remove('is-active');
+    i = (i + 1) % logos.length;
+    logos[i].classList.add('is-active');
+  }, 3000);
+})();
+
 /* ----- Barra de filtro por marca (solo en modo Venta) ----- */
 function renderBrandBar() {
   const chips = [{ id: 'all', name: 'Todas' }, ...BRANDS];
