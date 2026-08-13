@@ -198,7 +198,7 @@ const PRODUCTS = [
       ['bi-rulers', 'Dimensiones externas', '1800 × 900 × 2230 mm'],
     ],
     images: [
-      'assets/andamio-electrico.jpeg',
+      'assets/andamio-azul.jpeg',
     ],
   },
   {
@@ -321,7 +321,7 @@ const PRODUCTS = [
    el espacio antes de descargar la imagen y no salte el layout (CLS).
    Si agregás una foto nueva, sumá acá sus medidas.               */
 const IMAGE_DIMS = {
-  'assets/andamio-electrico.jpeg': [1180, 1333],
+  'assets/andamio-azul.jpeg': [752, 1382],
   'assets/articulada-hsylift.jpeg': [1288, 1221],
   'assets/ficha-tecncicaarticulada.jpeg': [1009, 1400],
   'assets/ficha-tijera-5,7m.jpeg': [1149, 1400],
