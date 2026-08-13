@@ -1,0 +1,26 @@
+# Archivos que NO se publican.
+# La carpeta de assets del Worker es la raíz del repo (ver wrangler.jsonc),
+# así que sin esta lista se subiría también el código de herramientas y la
+# documentación interna, quedando accesibles desde el dominio.
+#
+# Ojo: products.js, script.js, producto.js, ficha.js y styles.css SÍ van,
+# porque los carga el navegador.
+
+# El repositorio entero. Publicarlo expondría todo el historial del proyecto.
+.git/
+
+.github/
+.claude/
+.claude-dev-helper/
+.gitignore
+.assetsignore
+wrangler.jsonc
+
+# Generador de las fichas: corre en la máquina o en el CI, nunca en el navegador.
+build.mjs
+
+# Config del servidor de desarrollo local (npx serve).
+serve.json
+
+# Documentación del repo.
+README.md

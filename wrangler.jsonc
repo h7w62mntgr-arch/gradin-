@@ -1,0 +1,27 @@
+{
+  // Configuración del Worker que publica el sitio.
+  //
+  // El sitio es HTML estático: no hay código de servidor, así que no lleva
+  // "main". Sólo se declara la carpeta de assets y el Worker los sirve.
+  // Sin este archivo el deploy falla con "Missing entry-point to Worker
+  // script or to assets directory", porque wrangler busca un script.
+  //
+  // "name" tiene que coincidir con el nombre del Worker en Cloudflare.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gradin",
+  "compatibility_date": "2026-08-13",
+
+  "assets": {
+    // La raíz del repo: el sitio no tiene paso de build que arme un /dist.
+    // Lo que no debe publicarse se lista en .assetsignore.
+    "directory": "./",
+
+    // Sirve 404.html cuando la URL no existe, en vez del cartel de Cloudflare.
+    "not_found_handling": "404-page",
+
+    // auto-trailing-slash: /maquinaria/<slug>/ sirve su index.html y
+    // /producto.html redirige a /producto. Es lo que asumen los canonical
+    // y el sitemap que genera build.mjs.
+    "html_handling": "auto-trailing-slash"
+  }
+}
