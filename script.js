@@ -67,7 +67,11 @@ function cardCopy(p, isVenta) {
     return {
       priceHTML: `USD ${p.alquilerDia} <small>+IVA / día</small>`,
       subHTML: `Semana USD ${p.alquilerSemana} +IVA · Cotizamos tu traslado`,
-      badge: '',
+      /* Un equipo de próximo ingreso lleva el cartel también en alquiler, para
+         que no aparezca como disponible en una pestaña y no en la otra. */
+      badge: p.soon
+        ? '<span class="pcard__soon"><i class="bi bi-hourglass-split"></i> Próximamente · Ya podés reservar</span>'
+        : '',
       cta: 'Ver detalles y fotos →',
     };
   }
