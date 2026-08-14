@@ -66,8 +66,15 @@ function cardCopy(p, isVenta) {
   if (!isVenta) {
     return {
       priceHTML: `USD ${p.alquilerDia} <small>+IVA / día</small>`,
-      subHTML: `Semana USD ${p.alquilerSemana} +IVA · Cotizamos tu traslado`,
-      badge: '',
+      subHTML: p.soon
+        ? 'Próximo ingreso — reservá tu alquiler'
+        : `Semana USD ${p.alquilerSemana} +IVA · Cotizamos tu traslado`,
+      /* Si el equipo está por ingresar, el cartel también va en alquiler:
+         si no, el mismo equipo aparecería “próximamente” en venta y
+         disponible en alquiler. */
+      badge: p.soon
+        ? '<span class="pcard__soon"><i class="bi bi-hourglass-split"></i> Próximamente · Ya podés reservar</span>'
+        : '',
       cta: 'Ver detalles y fotos →',
     };
   }
