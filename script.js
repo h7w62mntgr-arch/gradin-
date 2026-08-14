@@ -59,6 +59,13 @@ function renderBrandBar() {
     <button type="button" class="brandbar__chip ${brand === b.id ? 'is-active' : ''}" data-brand="${b.id}" aria-pressed="${brand === b.id}">${b.name}</button>`).join('');
 }
 
+/* Cartel de próximo ingreso. Va corto a propósito: la tarjeta puede quedar
+   de 260px (la grilla lo permite y en mobile ocupa todo el ancho), y un texto
+   largo partía la pastilla en dos líneas. El “reservá” lo dice la línea de
+   abajo y el botón, así que acá alcanza con el estado.                   */
+const BADGE_SOON =
+  '<span class="pcard__soon"><i class="bi bi-hourglass-split"></i> Próximamente</span>';
+
 /* ----- Textos de una tarjeta según la modalidad (venta / alquiler) -----
    Lo usan tanto la grilla como la tarjeta destacada del hero, así los
    precios nunca pueden quedar desfasados entre una y otra.            */
@@ -69,9 +76,7 @@ function cardCopy(p, isVenta) {
       subHTML: `Semana USD ${p.alquilerSemana} +IVA · Cotizamos tu traslado`,
       /* Un equipo de próximo ingreso lleva el cartel también en alquiler, para
          que no aparezca como disponible en una pestaña y no en la otra. */
-      badge: p.soon
-        ? '<span class="pcard__soon"><i class="bi bi-hourglass-split"></i> Próximamente · Ya podés reservar</span>'
-        : '',
+      badge: p.soon ? BADGE_SOON : '',
       cta: 'Ver detalles y fotos →',
     };
   }
@@ -83,7 +88,7 @@ function cardCopy(p, isVenta) {
     return {
       priceHTML,
       subHTML: 'Próximo ingreso — reservá tu unidad',
-      badge: '<span class="pcard__soon"><i class="bi bi-hourglass-split"></i> Próximamente · Ya podés reservar</span>',
+      badge: BADGE_SOON,
       cta: 'Reservar / ver ficha →',
     };
   }
