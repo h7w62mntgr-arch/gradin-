@@ -21,8 +21,6 @@ const PRODUCTS = [
     entrega: '1.995',
     cuotasMax: 12,
     cuota: '166',
-    alquilerDia: '90',
-    alquilerSemana: '300',
     desc: 'Plataforma de elevación vertical unipersonal, compacta y 100% eléctrica. Ideal para tareas de mantenimiento, montaje e instalación en altura dentro de espacios reducidos e interiores.',
     cardSpecs: [
       ['bi-arrows-expand', '10 m'],
@@ -56,8 +54,6 @@ const PRODUCTS = [
     entrega: '3.995',
     cuotasMax: 18,
     cuota: '222',
-    alquilerDia: '100',
-    alquilerSemana: '350',
     desc: 'Plataforma de tijera con desplazamiento a batería y caminar asistido. Incluye kit de elevación. Se mueve sin cables ni combustible, ideal para trabajos prolongados en interiores donde se necesita autonomía y bajo mantenimiento.',
     cardSpecs: [
       ['bi-arrows-expand', '11 m'],
@@ -154,12 +150,9 @@ const PRODUCTS = [
     slug: 'montacargas-2-5t',
     brand: 'gradin',
     name: 'Montacargas 2.5 T',
-    tag: 'Solo alquiler',
+    tag: 'Disponible',
     icon: 'bi-truck',
-    ventaOculta: true,
-    alquilerDia: '120',
-    alquilerSemana: '500',
-    desc: 'Montacargas de 2,5 toneladas de capacidad y hasta 4,5 m de altura de elevación. Ideal para carga, descarga y movimiento de pallets y materiales pesados en obra, depósito e industria. Disponible para alquiler por día o por semana.',
+    desc: 'Montacargas de 2,5 toneladas de capacidad y hasta 4,5 m de altura de elevación. Ideal para carga, descarga y movimiento de pallets y materiales pesados en obra, depósito e industria.',
     cardSpecs: [
       ['bi-arrows-expand', '4,5 m'],
       ['bi-box-seam', '2.500 kg'],
@@ -167,7 +160,6 @@ const PRODUCTS = [
     specs: [
       ['bi-box-seam', 'Capacidad de carga', '2.500 kg (2,5 T)'],
       ['bi-arrows-expand', 'Altura de elevación', 'Hasta 4,5 m'],
-      ['bi-patch-check-fill', 'Modalidad', 'Alquiler por día o semana'],
     ],
     images: [
       'assets/productos/montacargas-1.webp',

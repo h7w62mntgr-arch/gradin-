@@ -538,32 +538,6 @@ img { max-width: 100%; display: block; }
 .section__title--light { color: #fff; }
 .section__desc { color: var(--muted); margin-top: 12px; font-size: 1.05rem; }
 
-/* ===== Toggle ===== */
-.toggle {
-  display: inline-flex;
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 5px;
-  margin-top: 26px;
-}
-.toggle__btn {
-  border: 0;
-  background: none;
-  padding: 10px 30px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: .95rem;
-  color: var(--muted);
-  cursor: pointer;
-  transition: color .2s, background .3s, box-shadow .3s;
-}
-.toggle__btn.is-active {
-  background: var(--blue-600);
-  color: #fff;
-  box-shadow: 0 6px 16px rgba(26,86,196,.35);
-}
-
 /* ===== Grid ===== */
 .grid--products {
   display: grid;
@@ -994,31 +968,14 @@ img { max-width: 100%; display: block; }
 @media (max-width: 760px) {
   html { scroll-padding-top: 100px; }
   .logo img { height: 56px; }
-  /* En mobile el header se pega al borde y las marcas suben al 78% de la
-     principal, para que se sigan leyendo sus nombres en pantalla chica. */
+  /* En mobile el header se pega al borde y las tres marcas se ven juntas al
+     lado de la principal (antes rotaban de a una, así que sólo se veía una).
+     Van al 78% de la principal, que es el techo que deja las cuatro en una
+     sola fila junto al botón del menú sin recortar nada. */
   .header__inner { padding-inline: 12px; }
-  .header__brand { gap: 14px; --wordmark: 30px; }
+  .header__brand { gap: 12px; --wordmark: 30px; }
+  .brandstrip { gap: 10px; min-width: 0; }
   .brandstrip__logo img { height: calc(var(--wordmark) * .78 / var(--marca, .5)); }
-  /* Slide rotativo: en pantalla chica no entran las tres marcas una al lado de
-     otra sin achicarlas hasta que no se lean. Se apilan en el mismo lugar y
-     script.js las va alternando, así cada una se ve entera. El alto lo fija la
-     marca más alta (TITAN, --marca .31) para que no salte al cambiar de logo. */
-  .brandstrip {
-    position: relative;
-    flex: 1;
-    min-width: 0;
-    height: calc(var(--wordmark) * .78 / .31);
-    gap: 0;
-  }
-  .brandstrip__logo {
-    position: absolute;
-    inset: 0;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .6s var(--ease);
-  }
-  .brandstrip__logo.is-active { opacity: 1; pointer-events: auto; }
   .brandstrip__logo:hover { transform: none; }
   .brandstrip__soon { display: none; }
   .nav {
@@ -1055,7 +1012,7 @@ img { max-width: 100%; display: block; }
   .section { padding-block: 60px; }
   .logo img { height: 46px; }
   .header__inner { padding-inline: 8px; }
-  .header__brand { gap: 10px; --wordmark: 26px; }
+  .header__brand { gap: 12px; --wordmark: 28px; }
   .brandstrip { gap: 10px; }
   .brandbar { gap: 8px; }
   .brandbar__chip { padding: 7px 14px; font-size: .84rem; }
@@ -1066,7 +1023,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 360px) {
   .logo img { height: 40px; }
   .header__inner { padding-inline: 6px; }
-  .header__brand { --wordmark: 22px; }
+  .header__brand { gap: 10px; --wordmark: 24px; }
   .brandstrip { gap: 8px; }
 }
 

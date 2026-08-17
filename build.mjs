@@ -79,21 +79,6 @@ function bloqueDetalle(p, IMAGE_DIMS) {
             <span class="spec__value">${escapar(s[2])}</span>
           </li>`).join('');
 
-  const rentBlock = p.alquilerDia ? `
-        <div class="detail__price">
-          <div class="detail__price-row">
-            <span class="detail__price-big">USD ${p.alquilerDia}</span>
-            <small>+ IVA · por día</small>
-          </div>
-          <div class="detail__finance">
-            <p class="detail__finance-title"><i class="bi bi-calendar-week"></i> Alquiler</p>
-            <ul>
-              <li>Por semana: <strong>USD ${p.alquilerSemana}</strong> + IVA</li>
-              <li>Cotizamos tu traslado</li>
-            </ul>
-          </div>
-        </div>` : '';
-
   let priceBlock = '';
   if (p.precio) {
     const financeBlock = p.soon ? `
@@ -117,7 +102,7 @@ function bloqueDetalle(p, IMAGE_DIMS) {
             <small>+ IVA · ${p.soon ? 'precio de reserva' : 'precio contado'}</small>
           </div>${financeBlock}
         </div>`;
-  } else if (!p.alquilerDia) {
+  } else {
     priceBlock = `
         <div class="detail__price">
           <div class="detail__price-row">
@@ -126,12 +111,12 @@ function bloqueDetalle(p, IMAGE_DIMS) {
           <div class="detail__price-alt">Escribinos por WhatsApp y te pasamos precio y opciones de financiación.</div>
         </div>`;
   }
-  return { thumbs, specRows, rentBlock, priceBlock, img, dim };
+  return { thumbs, specRows, priceBlock, img, dim };
 }
 
 function generarFicha(p, datos, template) {
   const { BRANDS, IMAGE_DIMS, WHATSAPP_NUMBER } = datos;
-  const { thumbs, specRows, rentBlock, priceBlock, img, dim } = bloqueDetalle(p, IMAGE_DIMS);
+  const { thumbs, specRows, priceBlock, img, dim } = bloqueDetalle(p, IMAGE_DIMS);
   const marca = BRANDS.find((b) => b.id === p.brand);
   const url = `${SITE_ORIGIN}/maquinaria/${p.slug}/`;
 
@@ -157,7 +142,7 @@ function generarFicha(p, datos, template) {
         <span class="pcard__tag ${p.hot ? 'pcard__tag--hot' : ''} detail__tag">${escapar(p.tag)}</span>
         <h1 class="detail__title">${escapar(p.name)}</h1>
         <p class="detail__desc">${escapar(p.desc)}</p>
-${priceBlock}${rentBlock}
+${priceBlock}
         <ul class="spec-list">${specRows}
         </ul>
 
@@ -180,8 +165,7 @@ ${priceBlock}${rentBlock}
     brand: { '@type': 'Brand', name: marca ? marca.name : 'GRADIN' },
     additionalProperty: p.specs.map((s) => ({ '@type': 'PropertyValue', name: s[1], value: s[2] })),
   };
-  /* Los equipos que son sólo de alquiler no llevan Offer: publicar ahí la
-     tarifa por día haría que Google la muestre como precio del equipo. */
+  /* Sin precio publicado no va Offer: Google necesita un valor concreto. */
   if (p.precio) {
     producto.offers = {
       '@type': 'Offer',

@@ -5,7 +5,6 @@ const grid = document.getElementById('productGrid');
 const brandBar = document.getElementById('brandBar');
 const brandStrip = document.getElementById('brandStrip');
 const brandEmpty = document.getElementById('brandEmpty');
-let mode = 'venta';
 let brand = 'all';
 
 /* ----- Marcas en el header (junto a GRADIN): cada logo filtra sus equipos ----- */
@@ -15,69 +14,17 @@ brandStrip.innerHTML = BRANDS.map(b => `
     ${b.pending ? '<span class="brandstrip__soon">Próximamente</span>' : ''}
   </a>`).join('');
 
-/* ----- Slide rotativo entre marcas (visible en celular, 3s por logo) -----
-   En pantallas chicas los logos se apilan en el mismo lugar y se van
-   alternando; en desktop el CSS los muestra todos y esto no se nota.
-   No se frena con prefers-reduced-motion a propósito: ahí el sitio ya anula
-   la transición, así que el cambio pasa a ser instantáneo en vez de fundido.
-   Cortar la rotación dejaría dos de las tres marcas invisibles en celular.
-
-   Arranca recién después de 'load' porque en mobile cada cambio dispara un
-   fundido de .6s en el header (ver .brandstrip__logo en la media query de
-   760px). Mientras la página carga eso la mantiene repintando sin parar y
-   Lighthouse no logra cerrar la medición: da NO_LCP, y con él se caen TBT y
-   las auditorías que dependen de esa ventana. En desktop no pasaba porque
-   ahí los logos se ven los tres juntos y togglear la clase no repinta nada.
-
-   El primer logo se marca activo de entrada, así que hasta que arranca la
-   rotación el header ya se ve como corresponde. */
-(function rotateBrandStrip() {
-  const logos = brandStrip.querySelectorAll('.brandstrip__logo');
-  if (logos.length < 2) return;
-  let i = 0;
-  logos[0].classList.add('is-active');
-
-  function arrancar() {
-    setInterval(() => {
-      /* Con la pestaña en segundo plano no se repinta al pedo: se saltea el
-         turno y el próximo tick sigue donde estaba. */
-      if (document.visibilityState !== 'visible') return;
-      logos[i].classList.remove('is-active');
-      i = (i + 1) % logos.length;
-      logos[i].classList.add('is-active');
-    }, 3000);
-  }
-
-  if (document.readyState === 'complete') arrancar();
-  else window.addEventListener('load', arrancar, { once: true });
-})();
-
-/* ----- Barra de filtro por marca (solo en modo Venta) ----- */
+/* ----- Barra de filtro por marca ----- */
 function renderBrandBar() {
   const chips = [{ id: 'all', name: 'Todas' }, ...BRANDS];
   brandBar.innerHTML = chips.map(b => `
     <button type="button" class="brandbar__chip ${brand === b.id ? 'is-active' : ''}" data-brand="${b.id}" aria-pressed="${brand === b.id}">${b.name}</button>`).join('');
 }
 
-/* ----- Textos de una tarjeta según la modalidad (venta / alquiler) -----
+/* ----- Textos de una tarjeta -----
    Lo usan tanto la grilla como la tarjeta destacada del hero, así los
    precios nunca pueden quedar desfasados entre una y otra.            */
-function cardCopy(p, isVenta) {
-  if (!isVenta) {
-    return {
-      priceHTML: `USD ${p.alquilerDia} <small>+IVA / día</small>`,
-      subHTML: p.soon
-        ? 'Próximo ingreso — reservá tu alquiler'
-        : `Semana USD ${p.alquilerSemana} +IVA · Cotizamos tu traslado`,
-      /* Si el equipo está por ingresar, el cartel también va en alquiler:
-         si no, el mismo equipo aparecería “próximamente” en venta y
-         disponible en alquiler. */
-      badge: p.soon
-        ? '<span class="pcard__soon"><i class="bi bi-hourglass-split"></i> Próximamente · Ya podés reservar</span>'
-        : '',
-      cta: 'Ver detalles y fotos →',
-    };
-  }
+function cardCopy(p) {
   const priceHTML = p.precio
     ? `USD ${p.precio} <small>+IVA</small>`
     : 'Consultar <small>precio</small>';
@@ -108,19 +55,13 @@ function dimsAttr(src) {
 }
 
 function render() {
-  const isVenta = mode === 'venta';
-  brandBar.hidden = !isVenta;
-
-  let list = isVenta
-    ? PRODUCTS.filter(p => !p.ventaOculta)
-    : PRODUCTS.filter(p => p.alquilerDia);
-
-  if (isVenta && brand !== 'all') list = list.filter(p => p.brand === brand);
+  let list = PRODUCTS;
+  if (brand !== 'all') list = list.filter(p => p.brand === brand);
 
   renderBrandBar();
 
   /* Marca sin equipos (ej. TITAN pendiente) → estado “Próximamente” */
-  if (isVenta && list.length === 0) {
+  if (list.length === 0) {
     const b = BRANDS.find(x => x.id === brand);
     grid.innerHTML = '';
     brandEmpty.hidden = false;
@@ -134,7 +75,7 @@ function render() {
   brandEmpty.hidden = true;
 
   grid.innerHTML = list.map((p, i) => {
-    const { priceHTML, subHTML, badge, cta } = cardCopy(p, isVenta);
+    const { priceHTML, subHTML, badge, cta } = cardCopy(p);
     return `
       <a class="pcard pcard--link ${p.soon ? 'pcard--soon' : ''}" href="maquinaria/${p.slug}/" style="animation-delay:${i * 60}ms">
         <div class="pcard__img pcard__img--photo">
@@ -162,7 +103,7 @@ function syncHeroCard() {
   const p = PRODUCTS.find(x => x.id === card.dataset.product);
   if (!p) return;
 
-  const { priceHTML, subHTML } = cardCopy(p, true);
+  const { priceHTML, subHTML } = cardCopy(p);
   card.href = `maquinaria/${p.slug}/`;
   card.querySelector('h3').textContent = p.name;
   card.querySelector('.pcard__price').innerHTML = priceHTML;
@@ -188,7 +129,7 @@ syncHeroCard();
 function renderEquipoOptions() {
   const select = document.getElementById('equipo');
   if (!select) return;
-  const sufijo = p => (p.soon ? ' (próximamente)' : p.ventaOculta ? ' (alquiler)' : '');
+  const sufijo = p => (p.soon ? ' (próximamente)' : '');
   const grupos = BRANDS
     .map(b => {
       const equipos = PRODUCTS.filter(p => p.brand === b.id);
@@ -201,22 +142,6 @@ function renderEquipoOptions() {
   select.innerHTML = `${grupos}<option>Otro / No estoy seguro</option>`;
 }
 renderEquipoOptions();
-
-/* ===== Toggle venta / alquiler ===== */
-document.getElementById('modeToggle').addEventListener('click', (e) => {
-  const btn = e.target.closest('.toggle__btn');
-  if (!btn || btn.classList.contains('is-active')) return;
-  document.querySelectorAll('.toggle__btn').forEach(b => {
-    const activo = b === btn;
-    b.classList.toggle('is-active', activo);
-    b.setAttribute('aria-pressed', String(activo));
-  });
-  mode = btn.dataset.mode;
-  /* El filtro por marca sólo existe en Venta: al salir se limpia, así no
-     vuelve aplicado de forma invisible cuando el usuario regresa. */
-  if (mode !== 'venta') brand = 'all';
-  render();
-});
 
 /* ===== Filtro por marca (chips) ===== */
 brandBar.addEventListener('click', (e) => {
@@ -231,14 +156,6 @@ brandStrip.addEventListener('click', (e) => {
   const link = e.target.closest('.brandstrip__logo');
   if (!link) return;
   brand = link.dataset.brand;
-  if (mode !== 'venta') {
-    mode = 'venta';
-    document.querySelectorAll('.toggle__btn').forEach(b => {
-      const activo = b.dataset.mode === 'venta';
-      b.classList.toggle('is-active', activo);
-      b.setAttribute('aria-pressed', String(activo));
-    });
-  }
   render();
 });
 
