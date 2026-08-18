@@ -498,7 +498,7 @@ img { max-width: 100%; display: block; }
   margin-bottom: 18px;
 }
 .pcard h3 { font-size: 1.2rem; font-weight: 800; }
-.pcard__price { font-size: 1.9rem; font-weight: 900; color: var(--blue-700); margin-top: 6px; }
+.pcard__price { font-size: 1.7rem; font-weight: 900; color: var(--blue-700); margin-top: 6px; white-space: nowrap; }
 .pcard__price small { font-size: .85rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
 .pcard__sub { color: var(--muted); font-size: .88rem; margin-bottom: 16px; }
 .pcard__specs {

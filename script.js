@@ -41,7 +41,7 @@ function cardCopy(p) {
   if (!p.precio) {
     subHTML = 'Escribinos por precio y financiación';
   } else if (p.cuota) {
-    subHTML = `Financiación propia: entregás 50% + hasta ${p.cuotasMax} cuotas de USD ${p.cuota}`;
+    subHTML = `Financiación propia: entregás 50% + hasta ${p.cuotasMax} cuotas de USD ${p.cuota} +IVA`;
   } else {
     subHTML = 'Consultanos financiación y disponibilidad';
   }
